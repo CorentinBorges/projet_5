@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+
+{% block jumbotron %}
+
+    <header class="masthead" alt='Machine à écrire' style="background-image: url('public/pictures/news.jpg')">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h1>Les Posts</h1>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+{% endblock %}
+
+{% block content %}
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                {% for post in list %}
+                    <div class="post-preview">
+                        <a href={{"post" ~ post.id }}>
+                            <h2 class="post-title">
+                                {{ post.title }}
+                            </h2>
+                            <h3 class="post-subtitle">
+                                {{ post.chapo }}
+                            </h3>
+                        </a>
+                        <p class="post-meta">Ecrit par {{ post.author }} le {{ post.dateCreation}} {% if post.dateModif is defined %} Modifié le {{ post.dateModif }} {% endif %}</p>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
