@@ -1,13 +1,13 @@
 <?php
 
+namespace App\src\DAO;
 
-class Database
+
+abstract class DAO
 {
     private $connection;
 
-    const DB_HOST = 'mysql:host=localhost;dbname=blog;charset=utf8';
-    const DB_USER = "root";
-    const DB_PASS = "root";
+
 
     private function checkConnexion()
     {
@@ -20,8 +20,8 @@ class Database
     private function getConnection()
     {
         try {
-            $this->connection = new PDO(self::DB_HOST, self::DB_USER, self::DB_PASS);
-            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->connection = new \PDO(DB_HOST, DB_USER, DB_PASS);
+            $this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             return $this->connection;
         }
         catch (Exception $errorConnection) {
@@ -37,8 +37,8 @@ class Database
             $result->execute($parameters);
             return $result;
         }
-        $result = $this->checkConnexion()->query($req);
-        return $result;
+        $query= $this->checkConnexion()->query($req);
+        return $query;
     }
 
 

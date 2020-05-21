@@ -498,12 +498,26 @@ footer .copyright {
     color: #00657B;
   }
 
+  #homePic
+  {
+
+    background-image: url("../../public/pictures/Home.jpg");
+  }
+
 @media only screen and (min-width: 992px)
 {
   .home-sides
   {
     margin-top: 10rem;
   }
+}
+
+/*==========AllPosts=========*/
+
+
+#postsPic
+{
+  background-image: url("../../public/pictures/news.jpg");
 }
 
 /*==========CV===========*/

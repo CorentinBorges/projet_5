@@ -1,5 +1,9 @@
 {
   "require": {
     "twig/twig": "3.0.3"
+  },
+  "autoload": {
+    "psr-4": {"App\\src\\": "src/",
+              "App\\config\\": "config/"}
   }
 }
