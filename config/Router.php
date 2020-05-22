@@ -36,7 +36,7 @@ class Router
                 }
                 elseif ($route ==='post'){
                     $this->frontController->post($this->request->getGet()->get('postId'));
-                }
+                  }
                 elseif ($route === 'login') {
                     $this->frontController->login();
                 }

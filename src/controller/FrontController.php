@@ -23,10 +23,16 @@ class FrontController extends MainController
     public function post($id)
     {
         $post=$this->articleDAO->getArticle($id);
-        $comments = $this->commentDAO->getComment($id);
-        $this->view->addVar('comments',$comments);
-        $this->view->addVar('post',$post);
-        $this->view->render('post.html.twig');
+        if ($this->articleDAO->articleExist($id)) {
+            $comments = $this->commentDAO->getComment($id);
+            $this->view->addVar('comments',$comments);
+            $this->view->addVar('post',$post);
+            $this->view->render('post.html.twig');
+        }
+        else {
+           $this->response->redirect('/projet_5/public/index.php?route=404');
+        }
+
     }
 
     public function login()

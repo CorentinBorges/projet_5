@@ -8,6 +8,7 @@ use App\src\DAO\ArticleDAO;
 use App\src\DAO\CommentDAO;
 use App\src\DAO\UserDAO;
 use App\src\constraint\Validation;
+use App\config\Response;
 
 abstract class MainController
 {
@@ -20,6 +21,7 @@ abstract class MainController
     protected $post;
     protected $validation;
     protected $session;
+    protected $response;
 
     public function __construct()
     {
@@ -32,6 +34,7 @@ abstract class MainController
         $this->get = $this->request->getGet();
         $this->post = $this->request->getPost();
         $this->session = $this->request->getSession();
+        $this->response = new Response();
     }
 
 
