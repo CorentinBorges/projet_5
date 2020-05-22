@@ -4,7 +4,7 @@
 namespace App\src\controller;
 
 
-class BackController
+class BackController extends MainController
 {
 
 }

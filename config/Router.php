@@ -7,7 +7,6 @@ namespace App\config;
 use \App\src\controller\FrontController;
 use \App\src\controller\ErrorController;
 use App\src\controller\BackController;
-use App\config\Request;
 
 
 class Router
@@ -29,13 +28,23 @@ class Router
 
     public function run()
     {
+        $route = $this->request->getGet()->get('route');
         try {
-            if (isset($_GET['route'])) {
-                if ($_GET['route'] === 'posts') {
+            if (isset($route)) {
+                if ($route === 'posts') {
                     $this->frontController->posts();
                 }
-                elseif ($_GET['route']==='post'){
+                elseif ($route ==='post'){
                     $this->frontController->post($this->request->getGet()->get('postId'));
+                }
+                elseif ($route === 'login') {
+                    $this->frontController->login();
+                }
+                elseif ($route === 'signIn') {
+                    $this->frontController->signIn($this->request->getPost());
+                }
+                elseif ($route === 'validSignIn') {
+                    $this->frontController->validSignIn();
                 }
                 else
                 {
