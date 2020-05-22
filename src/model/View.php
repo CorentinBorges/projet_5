@@ -9,22 +9,29 @@ use Twig\Environment;
 class View
 {
     private $loader;
+    private $vars;
     private $twig;
 
     public function __construct()
     {
+        $this->vars = [];
         $this->loader = new FilesystemLoader(__DIR__.'/../../templates');
         $this->twig = new Environment($this->loader, array('cache' => false));
     }
 
-    public function render($page,$data=[])
+    public function render($page)
     {
         try {
             ob_start();
-            echo $this->twig->render($page,$data);
+            echo $this->twig->render($page,$this->vars);
         }
         catch (\Exception $e) {
             echo "Le fichier demandé n'éxiste pas";
         }
+    }
+
+    public function addVar($key, $value)
+    {
+        $this->vars[$key] = $value;
     }
 }

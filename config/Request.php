@@ -15,7 +15,7 @@ class Request
     {
         $this->get = new Parameter($_GET);
         $this->post = new Parameter($_POST);
-//        $this->session = $_SESSION;
+        $this->session = new Session($_SESSION);
     }
 
 
@@ -29,9 +29,9 @@ class Request
         return $this->post;
     }
 
-/*    public function getSession()
+    public function getSession()
     {
         return $this->session;
-    }*/
+    }
 
 }
