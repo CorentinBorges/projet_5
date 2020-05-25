@@ -40,4 +40,15 @@ class UserDAO extends DAO
             return "Cette adresse mail est déjà utilisé";
         }
     }
+
+    public function login(Parameter $post)
+    {
+        $req = "SELECT id,password FROM users WHERE pseudo=?";
+        $result = $this->createQuery($req, [$post->get('pseudo')]);
+        $datas=$result->fetch();
+        if($datas){
+            $checkUser = password_verify($post->get('pass'), $datas['password']);
+            return $checkUser;
+        }
+    }
 }

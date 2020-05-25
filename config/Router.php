@@ -29,8 +29,17 @@ class Router
     public function run()
     {
         $route = $this->request->getGet()->get('route');
+        if ($this->request->getCookie()->get('pseudo')) {
+            $this->request->getSession()->set('pseudo',$this->request->getCookie()->get('pseudo'));
+        }
+        if ($this->request->getSession()->get('pseudo')) {
+            $this->frontController->connect();
+        }
+
         try {
+
             if (isset($route)) {
+
                 if ($route === 'posts') {
                     $this->frontController->posts();
                 }
@@ -38,7 +47,7 @@ class Router
                     $this->frontController->post($this->request->getGet()->get('postId'));
                   }
                 elseif ($route === 'login') {
-                    $this->frontController->login();
+                    $this->frontController->login($this->request->getPost());
                 }
                 elseif ($route === 'signIn') {
                     $this->frontController->signIn($this->request->getPost());
@@ -46,6 +55,10 @@ class Router
                 elseif ($route === 'validSignIn') {
                     $this->frontController->validSignIn();
                 }
+                elseif ($route === 'disconnect') {
+                    $this->backController->disconnect();
+                }
+
                 else
                 {
                     $this->errorControlller->errorNotFound();

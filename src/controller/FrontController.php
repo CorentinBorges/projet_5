@@ -35,11 +35,6 @@ class FrontController extends MainController
 
     }
 
-    public function login()
-    {
-        $this->view->render('login.html.twig');
-    }
-
     public function signIn(\App\config\Parameter $post)
     {
         $errors = null;
@@ -89,9 +84,41 @@ class FrontController extends MainController
         $this->view->render('signIn.html.twig');
     }
 
-    public function validSignIn()
+    public function validSignIn(\App\config\Parameter $post)
     {
         $this->view->render('validSignIn.html.twig');
+    }
+
+    public function login(\App\config\Parameter $post)
+    {
+        if($post->get('submit'))
+        {
+            $checkUser=$this->userDAO->login($post);
+            if ($checkUser AND $checkUser===true) {
+                $this->session->set('pseudo',$post->get('pseudo'));
+                if ($post->get('cookie')) {
+                    $this->cookie->set('pseudo',$post->get('pseudo'));
+                }
+                $this->response->redirect('/projet_5/public/index.php');
+            }
+            else {
+                $this->view->addVar('error',"Le nom d'utilisateur ou le mot de passe sont incorrects");
+                $this->view->addVar('pseudo',$post->get('pseudo'));
+                $this->view->addVar('pass',$post->get('pass'));
+            }
+        }
+        $this->view->render('login.html.twig');
+    }
+
+
+    public function connect()
+    {
+        if ($this->session->get('pseudo')) {
+            $this->view->addVar('pseudo',$this->session->get('pseudo'));
+        }
+        if ($this->session->get('admin')) {
+            $this->view->addVar('admin','admin');
+        }
     }
 
 }
