@@ -43,12 +43,13 @@ class UserDAO extends DAO
 
     public function login(Parameter $post)
     {
-        $req = "SELECT id,password FROM users WHERE pseudo=?";
+        $req = "SELECT id,password,role_id FROM users WHERE pseudo=?";
         $result = $this->createQuery($req, [$post->get('pseudo')]);
         $datas=$result->fetch();
         if($datas){
             $checkUser = password_verify($post->get('pass'), $datas['password']);
-            return $checkUser;
+            $admin = (int)$datas['role_id']===1;
+            return ['valid'=>$checkUser, 'admin'=>$admin];
         }
     }
 }

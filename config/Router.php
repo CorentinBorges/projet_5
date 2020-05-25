@@ -28,9 +28,15 @@ class Router
 
     public function run()
     {
+        $cookie = $this->request->getCookie();
+        $session = $this->request->getSession();
         $route = $this->request->getGet()->get('route');
-        if ($this->request->getCookie()->get('pseudo')) {
-            $this->request->getSession()->set('pseudo',$this->request->getCookie()->get('pseudo'));
+
+        if ($cookie->get('pseudo')) {
+            $session->set('pseudo',$cookie->get('pseudo'));
+            if ($cookie->get('admin')) {
+                $session->set('admin','admin');
+            }
         }
         if ($this->request->getSession()->get('pseudo')) {
             $this->frontController->connect();

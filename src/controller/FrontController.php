@@ -94,10 +94,16 @@ class FrontController extends MainController
         if($post->get('submit'))
         {
             $checkUser=$this->userDAO->login($post);
-            if ($checkUser AND $checkUser===true) {
+            if ($checkUser['valid']) {
                 $this->session->set('pseudo',$post->get('pseudo'));
+                if ($checkUser['admin']) {
+                    $this->session->set('admin','admin');
+                }
                 if ($post->get('cookie')) {
                     $this->cookie->set('pseudo',$post->get('pseudo'));
+                    if ($checkUser['admin']) {
+                        $this->cookie->set('admin','admin');
+                    }
                 }
                 $this->response->redirect('/projet_5/public/index.php');
             }
