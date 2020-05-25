@@ -46,9 +46,12 @@ $("body").click(function(event) {
 });
 
 x=0;
+
+
 while( x<6){
-    $("."+x+" .text-danger").click(function() {
-      $(this).removeClass('text-danger');
+
+    $("."+x+".text-danger").click(function() {
+        $(this).removeClass('text-danger');
     });
     x++;
 }

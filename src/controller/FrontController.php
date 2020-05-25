@@ -7,20 +7,12 @@ use App\src\DAO\CommentDAO;
 
 class FrontController extends MainController
 {
-    private $articleDAO;
-    private $commentDAO;
-
-    public function __construct()
-    {
-        parent::__construct();
-        $this->articleDAO = new ArticleDAO();
-        $this->commentDAO = new CommentDAO();
-    }
 
     public function posts()
     {
         $list = $this->articleDAO->getArticles();
-        $this->view->render('posts.html.twig', array('list' => $list));
+        $this->view->addVar('list',$list);
+        $this->view->render('posts.html.twig');
     }
 
     public function home()
@@ -31,7 +23,102 @@ class FrontController extends MainController
     public function post($id)
     {
         $post=$this->articleDAO->getArticle($id);
-        $comments = $this->commentDAO->getComment($id);
-        $this->view->render('post.html.twig', array('post'=>$post,'comments'=>$comments));
+        if ($this->articleDAO->articleExist($id)) {
+            $comments = $this->commentDAO->getComment($id);
+            $this->view->addVar('comments',$comments);
+            $this->view->addVar('post',$post);
+            $this->view->render('post.html.twig');
+        }
+        else {
+           $this->response->redirect('/projet_5/public/index.php?route=404');
+        }
+
     }
+
+    public function signIn(\App\config\Parameter $post)
+    {
+        $errors = null;
+
+        if ($post->get('submitLog')) {
+            $errors=$this->validation->Validate($post,'user');
+            $errorTypes=$this->validation->getErrorType($post,'user');
+
+            if($this->userDAO->pseudoExist($post)){
+                $errors[] = $this->userDAO->pseudoExist($post);
+                $errorTypes[] = 'invalidPseudo';
+            }
+
+            if ($this->userDAO->mailExist($post)) {
+                $errors[] = $this->userDAO->mailExist($post);
+                $errorTypes[] = 'invalidMail';
+            }
+
+            if (!preg_match('#^'.$post->get('pass').'$#', $post->get('confirmPass'))) {
+                    $errors[]=" La confirmation du mot de passe est incorrecte";
+                    $errorTypes[] = 'invalidConfirm';
+            }
+
+            if (!$post->get('CGU')) {
+                $errors[]=" Vous devez accepter les conditions d'utilisation pour vous inscrire";
+            }
+
+            if (isset($errorTypes)) {
+
+                foreach ($errorTypes as $value) {
+                    $this->view->addVar($value,'text-danger');
+                }
+            }
+            $this->view->addVar('name',$post->get('name'));
+            $this->view->addVar('firstName',$post->get('firstName'));
+            $this->view->addVar('mail',$post->get('mail'));
+            $this->view->addVar('pseudo',$post->get('pseudo'));
+            $this->view->addVar('pass',$post->get('pass'));
+            $this->view->addVar('confirmPass',$post->get('confirmPass'));
+            if (empty($errors)) {
+                $this->userDAO->register($post);
+                header('Location: /projet_5/public/index.php?route=validSignIn');
+            }
+        }
+
+        $this->view->addVar('errors',$errors);
+        $this->view->render('signIn.html.twig');
+    }
+
+    public function validSignIn(\App\config\Parameter $post)
+    {
+        $this->view->render('validSignIn.html.twig');
+    }
+
+    public function login(\App\config\Parameter $post)
+    {
+        if($post->get('submit'))
+        {
+            $checkUser=$this->userDAO->login($post);
+            if ($checkUser AND $checkUser===true) {
+                $this->session->set('pseudo',$post->get('pseudo'));
+                if ($post->get('cookie')) {
+                    $this->cookie->set('pseudo',$post->get('pseudo'));
+                }
+                $this->response->redirect('/projet_5/public/index.php');
+            }
+            else {
+                $this->view->addVar('error',"Le nom d'utilisateur ou le mot de passe sont incorrects");
+                $this->view->addVar('pseudo',$post->get('pseudo'));
+                $this->view->addVar('pass',$post->get('pass'));
+            }
+        }
+        $this->view->render('login.html.twig');
+    }
+
+
+    public function connect()
+    {
+        if ($this->session->get('pseudo')) {
+            $this->view->addVar('pseudo',$this->session->get('pseudo'));
+        }
+        if ($this->session->get('admin')) {
+            $this->view->addVar('admin','admin');
+        }
+    }
+
 }

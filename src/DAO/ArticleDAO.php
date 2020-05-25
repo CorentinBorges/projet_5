@@ -42,5 +42,15 @@ class ArticleDAO extends DAO
 
     }
 
+    public function articleExist($articleId)
+    {
+        $req = "SELECT COUNT(*) FROM post WHERE id=?";
+        $result = $this->createQuery($req, [$articleId]);
+        $count = $result->fetchColumn();
+        if ($count) {
+            return true;
+        }
+    }
+
 
 }

@@ -27,11 +27,11 @@
 <div id="top"></div>
 <a  class="arrow-link" href="#top"><i class="fas d-none d-md-block fa-angle-double-up"></i></a>
 <!--Page Nav-->
-{% if connected %}
+{% if pseudo is defined %}
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
         <img id='nav-pic' src='public/pictures/profil.png' alt='Corentin borges'/>
-        <a class="navbar-brand " href="/blog">Corentin Borges</a>
+        <a class="navbar-brand " href="/projet_5/public/">Corentin Borges</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
@@ -39,15 +39,15 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/blog">Acceuil</a>
+                    <a class="nav-link" href="/projet_5/public/">Acceuil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="posts">Posts</a>
+                    <a class="nav-link" href="/projet_5/public/index.php?route=posts">Posts</a>
                 </li>
                 <div class="nav-devider-connect d-none d-lg-block mt-1"></div>
                 <li class="nav-item ">
                     <span id='pseudo-nav' class='d-none d-lg-block ml-3'>{{pseudo}}</span>
-                    <a class="nav-link" id='disconnect' href="disconnect">Déconnexion</a>
+                    <a class="nav-link" id='disconnect' href="/projet_5/public/index.php?route=disconnect">Déconnexion</a>
                 </li>
             </ul>
         </div>
@@ -72,10 +72,10 @@
                 </li>
                 <div class="nav-devider mt-1"></div>
                 <li class="nav-item">
-                    <a class="nav-link" href="login">Connexion</a>
+                    <a class="nav-link" href="/projet_5/public/index.php?route=login">Connexion</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="signIn">s'enregistrer</a>
+                    <a class="nav-link" href="/projet_5/public/index.php?route=signIn">s'enregistrer</a>
                 </li>
             </ul>
         </div>
@@ -161,7 +161,6 @@
 <script src="public/js/bootstrap.bundle.min.js"></script>
 <script src="public/js/all.min.js"></script>
 <script src="public/js/clean-blog.js"></script>
-
 
 </body>
 
