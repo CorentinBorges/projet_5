@@ -486,7 +486,6 @@ footer .copyright {
 
 /*==============Home====================*/
 
-
   .CV-link
   {
     color: #4190df;
@@ -522,6 +521,10 @@ footer .copyright {
 
 /*==========CV===========*/
 
+#CV-head
+{
+  background-image: url("../../public/pictures/CV.jpg");
+}
 #CV
 {
   height: 30rem;
