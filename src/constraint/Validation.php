@@ -32,6 +32,12 @@ class Validation
             $errors = $userValidation ->check($data);
             return $errors;
         }
+
+        if($name === 'comment'){
+            $commentValidation = new CommentValidation();
+            $errors=$commentValidation->check($data);
+            return $errors;
+        }
     }
 
     public function errorType()

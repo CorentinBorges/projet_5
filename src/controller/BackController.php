@@ -6,14 +6,15 @@ namespace App\src\controller;
 
 class BackController extends MainController
 {
+
     public function disconnect()
     {
-        $this->session->remove('pseudo');
         if ($this->session->get('admin')) {
-            $this->session->remove('admin');
+            $this->cookie->remove('admin');
         }
         $this->session->stop();
         $this->cookie->remove('pseudo');
+        $this->cookie->remove('id');
         $this->response->redirect('/projet_5/public/');
     }
 

@@ -49,7 +49,7 @@ class UserDAO extends DAO
         if($datas){
             $checkUser = password_verify($post->get('pass'), $datas['password']);
             $admin = (int)$datas['role_id']===1;
-            return ['valid'=>$checkUser, 'admin'=>$admin];
+            return ['valid'=>$checkUser, 'id'=>$datas['id'], 'admin'=>$admin];
         }
     }
 }
