@@ -34,6 +34,7 @@ class Router
 
         if ($cookie->get('pseudo')) {
             $session->set('pseudo',$cookie->get('pseudo'));
+            $session->set('id',$cookie->get('id'));
             if ($cookie->get('admin')) {
                 $session->set('admin','admin');
             }
@@ -41,8 +42,8 @@ class Router
         if ($this->request->getSession()->get('pseudo')) {
             $this->frontController->connect();
         }
-
-        try {
+//TODO: active try/catch
+//        try {
 
             if (isset($route)) {
 
@@ -74,11 +75,11 @@ class Router
 
                 $this->frontController->home();
             }
-        }
-        catch (\Exception $e) {
+//        }
+        /*catch (\Exception $e) {
 
             $this->errorControlller->errorServer();
-        }
+        }*/
     }
 
 }

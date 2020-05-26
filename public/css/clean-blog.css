@@ -581,12 +581,17 @@ footer .copyright {
 .confirm-comment
 {
   background-color: #d4edda;
-  
 }
 
-.confirm-comment-bg
+.error-comment
+{
+  background-color: #F8D7DA;
+}
+.box-comment-bg
 {
   background-color: rgba(0,0,0,0.2);
+  display: block;
+  padding-right: 19px;
 }
 
 

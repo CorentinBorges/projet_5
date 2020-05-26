@@ -24,6 +24,22 @@ class FrontController extends MainController
     {
         $post=$this->articleDAO->getArticle($id);
         if ($this->articleDAO->articleExist($id)) {
+            if ($this->post->get('submitComment')) {
+                $errors = $this->validation->Validate($this->post->get('comment'), 'comment');
+                if($errors){
+                    $this->view->addVar('errors',$errors);
+                }
+                else
+                {
+                    $this->commentDAO->setComment($this->session->get('admin'),$id,$this->session->get('id'),$this->post->get('comment'));
+                    $this->view->addVar($this->post->get('submitComment'),'submit');
+                    if (!$this->session->get('admin')) {
+                        $this->view->addVar('commentSent','commentSent');
+                    }
+
+                }
+
+            }
             $comments = $this->commentDAO->getComment($id);
             $this->view->addVar('comments',$comments);
             $this->view->addVar('post',$post);
@@ -32,6 +48,7 @@ class FrontController extends MainController
         else {
            $this->response->redirect('/projet_5/public/index.php?route=404');
         }
+
 
     }
 
@@ -96,11 +113,13 @@ class FrontController extends MainController
             $checkUser=$this->userDAO->login($post);
             if ($checkUser['valid']) {
                 $this->session->set('pseudo',$post->get('pseudo'));
+                $this->session->set('id',$checkUser['id']);
                 if ($checkUser['admin']) {
                     $this->session->set('admin','admin');
                 }
                 if ($post->get('cookie')) {
                     $this->cookie->set('pseudo',$post->get('pseudo'));
+                    $this->cookie->set('id',$checkUser['id']);
                     if ($checkUser['admin']) {
                         $this->cookie->set('admin','admin');
                     }

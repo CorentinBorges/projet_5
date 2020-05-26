@@ -30,21 +30,21 @@
     </article>
 
 
-    {% if connected is defined %}
+    {% if pseudo is defined %}
         <hr>
         <div class="flex-column mx-auto text-center">
-            <form method='post' action='{{'post' ~ post.id}}'>
+            <form method='post' action='/projet_5/public/index.php?route=post&postId={{post.id}}'>
                 <label for='comment' id="comment-label" >Commentaire:<br/></label>
-                <textarea  maxlength="250" name="comment" id='comment' required></textarea>
+                <textarea  maxlength="250" name="comment" id='comment' {#required#}></textarea>
                 <div class="form-group col-5 col-md-12 mt-3 mx-auto" >
-                    <button type="submit" name='submitComment' class="btn btn-primary" id="send">Envoyer</button>
+                    <button type="submit" name='submitComment' value="'submit" class="btn btn-primary" id="send">Envoyer</button>
                 </div>
             </form>
         </div>
     {% endif %}
 
     {% if commentSent is defined %}
-        <div class="modal confirm-comment-bg fade show pt-5  " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false" style="display: block; padding-right: 19px;">
+        <div class="modal box-comment-bg fade show pt-5  " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false" style="">
             <div class="modal-dialog" role="document">
                 <div class="modal-content confirm-comment">
 
@@ -54,6 +54,24 @@
 
                     <div class="modal-body ">
                         <p>Votre commentaire à été envoyé, il est en attente de validation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if errors is defined %}
+        <div class="modal box-comment-bg fade show pt-5  " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false" style="display: block; padding-right: 19px;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content error-comment">
+
+                    <button type="button" class="close text-right mr-3" id='confirm-cross-btn' data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class='confirm-cross w-100'>&times;</span>
+                    </button>
+
+                    <div class="modal-body ml-3">
+                        {% for error in errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

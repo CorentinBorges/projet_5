@@ -42,7 +42,7 @@
 
 
 $("body").click(function(event) {
-    $('.confirm-comment-bg').hide()
+    $('.box-comment-bg').hide()
 });
 
 x=0;
