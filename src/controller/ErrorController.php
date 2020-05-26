@@ -15,4 +15,9 @@ class ErrorController extends MainController
     {
         $this->view->render('errorServer.html.twig');
     }
+
+    public function errorNotAdmin()
+    {
+        $this->view->render('notAdmin.html.twig');
+    }
 }

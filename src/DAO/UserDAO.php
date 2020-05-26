@@ -52,4 +52,11 @@ class UserDAO extends DAO
             return ['valid'=>$checkUser, 'id'=>$datas['id'], 'admin'=>$admin];
         }
     }
+
+    public function nonValidCount()
+    {
+        $req = 'SELECT COUNT(id) FROM users WHERE valid=?';
+        $result = $this->createQuery($req, [0]);
+        return $result->fetchColumn();
+    }
 }

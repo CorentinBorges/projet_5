@@ -29,4 +29,11 @@ class CommentDAO extends DAO
         $isAdmin = $admin ? 1 : 0;
         $this->createQuery($req, [$userId, $postId, $content, $isAdmin]);
     }
+
+    public function nonValidCount()
+    {
+        $req = 'SELECT COUNT(id) FROM comment WHERE valid=?';
+        $result = $this->createQuery($req, [0]);
+        return $result->fetchColumn();
+    }
 }

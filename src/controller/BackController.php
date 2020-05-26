@@ -18,4 +18,13 @@ class BackController extends MainController
         $this->response->redirect('/projet_5/public/');
     }
 
+    public function adminHome()
+    {
+        $nbComNoValid=$this->commentDAO->nonValidCount();
+        $nbUserNoValid = $this->userDAO->nonValidCount();
+        $this->view->addVar('countCom',$nbComNoValid);
+        $this->view->addVar('countLog',$nbUserNoValid);
+        $this->view->render('adminHome.html.twig');
+    }
+
 }
