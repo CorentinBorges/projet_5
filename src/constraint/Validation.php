@@ -38,6 +38,12 @@ class Validation
             $errors=$commentValidation->check($data);
             return $errors;
         }
+
+        if ($name === 'mail') {
+            $mailValidation = new MailValidation();
+            $errors = $mailValidation->check($data);
+            return $errors;
+        }
     }
 
     public function errorType()
@@ -48,14 +54,18 @@ class Validation
         }
     }
 
-    public function getErrorType($datas,$name)
+    public function getErrorType(\App\config\Parameter $datas,$name)
     {
         if ($name==='user') {
             $userValidation = new UserValidation();
             $userValidation->check($datas);
-
-
             return $userValidation->errorType();
+        }
+
+        if ($name === 'mail') {
+            $mailValidation = new MailValidation();
+            $mailValidation->check($datas);
+            return $mailValidation->errorType;
         }
     }
 }

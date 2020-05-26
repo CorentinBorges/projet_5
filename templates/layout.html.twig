@@ -57,7 +57,7 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
         <img id='nav-pic' src='public\pictures\profil.png' alt='Corentin borges'/>
-        <a class="navbar-brand " href="/blog">Corentin Borges</a>
+        <a class="navbar-brand " href="/projet_5/public/">Corentin Borges</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
@@ -92,8 +92,8 @@
 
 {{ block ('content')}}
 
-<div id="CGU-container" class='CGU' style="display: none">
-    <object type="application/pdf" id='CV' data="Web/docs/CGU.pdf" ></object>
+<div id="CGU-container" class='CGU' style="display: none"> {#TODO: style in css#}
+    <object type="application/pdf" id='CV' data="/projet_5/public/docs/CGU.pdf" ></object>
 </div>
 <hr class="mt-5">
 <footer>
@@ -102,10 +102,10 @@
             <ul class="col-lg-4 plan d-none d-lg-block col-md-3 ">
                 <p>Plan du site:</p>
                 <li class="nav-item">
-                    <a class="nav-link" href="/blog">Acceuil</a>
+                    <a class="nav-link" href="/projet_5/public/">Acceuil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="posts">Posts</a>
+                    <a class="nav-link" href="/projet_5/public/index.php?route=posts">Posts</a>
                 </li>
                 <button class="nav-link CGU-btn">Conditions générales d'utilisation</button>
             </ul>
@@ -141,10 +141,10 @@
             <ul class="plan d-lg-none text-center mt-3 d-block col-lg-3 ">
                 <p>Plan du site:</p>
                 <li class="nav-item list-group-item">
-                    <a class="nav-link" href="/blog">Acceuil</a>
+                    <a class="nav-link" href="/projet_5/public/">Acceuil</a>
                 </li>
                 <li class="nav-item list-group-item">
-                    <a class="nav-link" href="posts">Posts</a>
+                    <a class="nav-link" href="/projet_5/public/index.php?route=posts">Posts</a>
                 </li>
                 <button class="nav-link CGU-btn">Conditions générales d'utilisation </button>
             </ul>
