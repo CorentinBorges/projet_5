@@ -78,7 +78,7 @@
             <div class="col-lg-6 pl-md-5 pl-sm-5 col-md-10 mx-auto">
                 <h2 class="text-center">Me contacter</h2>
 
-                <form name="sentMessage" id="contactForm" method='post' action="/blog/">
+                <form name="sentMessage" id="contactForm" method='post' action="/projet_5/public/">
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
                             <label>Nom</label>
@@ -110,14 +110,14 @@
                     <div class="control-group ">
                         <div class="form-group floating-label-form-group controls">
                             <label>Message</label>
-                            <textarea rows="4" class="form-control 5 {{invalidMessage}}" maxlength="250" name='message' {% if name %} value='{{message}}' {% endif %} placeholder="Message" id="message" required data-validation-required-message="Vous n'avez pas écrit de message"></textarea>
+                            <textarea rows="4" class="form-control 5 {{invalidMessage}}" maxlength="250" name='message'  placeholder="Message" id="message" required data-validation-required-message="Vous n'avez pas écrit de message">{% if message %} {{ message }} {% endif %}</textarea>
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <br>
                     <div id="success"></div>
                     <div class="form-group col-5 col-md-12 mx-auto" >
-                        <button type="submit" name='submit' class="btn btn-primary" id="sendMessageButton">Envoyer</button>
+                        <button type="submit" value="submit" name='submitMail' class="btn btn-primary" id="sendMessageButton">Envoyer</button>
                     </div>
                 </form>
             </div>

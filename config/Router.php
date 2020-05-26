@@ -50,7 +50,6 @@ class Router
                 if ($route === 'CV'){
                     $this->frontController->CV();
                 }
-
                 elseif ($route === 'posts') {
                     $this->frontController->posts();
                 }
@@ -69,7 +68,6 @@ class Router
                 elseif ($route === 'disconnect') {
                     $this->backController->disconnect();
                 }
-
                 else
                 {
                     $this->errorControlller->errorNotFound();
@@ -77,7 +75,7 @@ class Router
             }
             else {
 
-                $this->frontController->home();
+                $this->frontController->home($this->request->getPost());
             }
 //        }
         /*catch (\Exception $e) {

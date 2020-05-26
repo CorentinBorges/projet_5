@@ -28,7 +28,7 @@ class Constraint
     }
 
 
-    public function noNum($value,$name=null)
+    public function hasNum($value,$name=null)
     {
         if (!preg_match('#^(?=.*[0-9])#', $value)) {
             return 'Le champ ' . $name . "  doit comporter au moins un chiffre";
@@ -46,6 +46,13 @@ class Constraint
     {
         if (!preg_match('#^(?=.*[A-Z])#', $value)) {
             return 'Le champ '. $name ." doit comporter au moins une lettre majuscule";
+        }
+    }
+
+    public function noNum($value, $name=null)
+    {
+        if (preg_match('#[0-9]#', $value)) {
+            return 'Le champ ' . $name . ' ne doit comporter que des lettres';
         }
     }
 

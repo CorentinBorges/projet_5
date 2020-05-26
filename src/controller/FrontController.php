@@ -4,12 +4,43 @@ namespace App\src\controller;
 
 use App\src\DAO\ArticleDAO;
 use App\src\DAO\CommentDAO;
+use App\config\Mail;
 
 class FrontController extends MainController
 {
 
-    public function home()
+    public function home(\App\config\Parameter $post)
     {
+        if($this->post->get('submitMail')){
+            $errors=$this->validation->Validate($post, 'mail');
+            $errorTypes = $this->validation->getErrorType($post,'mail');
+            if ($errors) {
+                $this->view->addVar('errors',$errors);
+                foreach ($errorTypes as $errorType) {
+                    $this->view->addVar($errorType,'text-danger');
+                }
+                $this->view->addVar('name',$post->get('name'));
+                $this->view->addVar('firstName',$post->get('firstName'));
+                $this->view->addVar('obj',$post->get('obj'));
+                $this->view->addVar('mail',$post->get('mail'));
+                $this->view->addVar('message',$post->get('message'));
+            }
+            else{
+                $transport = (new \Swift_SmtpTransport(mail::HOST_NAME, MAIL::PORT))
+                    ->setUsername(mail::USERNAME)
+                    ->setPassword(mail::PASSWORD)
+                    ->setEncryption(mail::EMAIL_ENCRYPTION)
+                ;
+                $mailer = new \Swift_Mailer($transport);
+                $message=(new \Swift_Message($post->get('obj')))
+                    ->setFrom([$post->get('mail') => $post->get('firstName')." ".$post->get('name')])
+                    ->setTo([mail::ADMIN_MAIL => mail::ADMIN_NAME])
+                    ->setBody($post->get('message'),'text/html');
+                $mailer->send($message);
+                $this->view->addVar('confirm','confirm');
+            }
+
+        }
         $this->view->render('home.html.twig');
     }
 
@@ -30,7 +61,7 @@ class FrontController extends MainController
         $post=$this->articleDAO->getArticle($id);
         if ($this->articleDAO->articleExist($id)) {
             if ($this->post->get('submitComment')) {
-                $errors = $this->validation->Validate($this->post->get('comment'), 'comment');
+                $errors = $this->validation->Validate($this->post, 'comment');
                 if($errors){
                     $this->view->addVar('errors',$errors);
                 }
@@ -93,7 +124,7 @@ class FrontController extends MainController
             $this->view->addVar('name',$post->get('name'));
             $this->view->addVar('firstName',$post->get('firstName'));
             $this->view->addVar('mail',$post->get('mail'));
-            $this->view->addVar('pseudo',$post->get('pseudo'));
+            $this->view->addVar('alias',$post->get('pseudo'));
             $this->view->addVar('pass',$post->get('pass'));
             $this->view->addVar('confirmPass',$post->get('confirmPass'));
             if (empty($errors)) {
@@ -106,7 +137,7 @@ class FrontController extends MainController
         $this->view->render('signIn.html.twig');
     }
 
-    public function validSignIn(\App\config\Parameter $post)
+    public function validSignIn()
     {
         $this->view->render('validSignIn.html.twig');
     }
@@ -116,7 +147,7 @@ class FrontController extends MainController
         if($post->get('submit'))
         {
             $checkUser=$this->userDAO->login($post);
-            if ($checkUser['valid']) {
+            if ($checkUser && $checkUser['valid']) {
                 $this->session->set('pseudo',$post->get('pseudo'));
                 $this->session->set('id',$checkUser['id']);
                 if ($checkUser['admin']) {
@@ -133,7 +164,7 @@ class FrontController extends MainController
             }
             else {
                 $this->view->addVar('error',"Le nom d'utilisateur ou le mot de passe sont incorrects");
-                $this->view->addVar('pseudo',$post->get('pseudo'));
+                $this->view->addVar('alias',$post->get('pseudo'));
                 $this->view->addVar('pass',$post->get('pass'));
             }
         }

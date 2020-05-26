@@ -35,7 +35,7 @@
         <div class="flex-column mx-auto text-center">
             <form method='post' action='/projet_5/public/index.php?route=post&postId={{post.id}}'>
                 <label for='comment' id="comment-label" >Commentaire:<br/></label>
-                <textarea  maxlength="250" name="comment" id='comment' {#required#}></textarea>
+                <textarea  maxlength="250" name="comment" id='comment' required></textarea>
                 <div class="form-group col-5 col-md-12 mt-3 mx-auto" >
                     <button type="submit" name='submitComment' value="'submit" class="btn btn-primary" id="send">Envoyer</button>
                 </div>

@@ -73,8 +73,8 @@ class UserValidation extends Validation
             $this->addErrorType('invalidPass');
         }
 
-        if ($constraint->noNum($value)) {
-            $this->addError($constraint->noNum($value,$fieldName));
+        if ($constraint->hasNum($value)) {
+            $this->addError($constraint->hasNum($value,$fieldName));
             $this->addErrorType('invalidPass');
         }
 
@@ -92,8 +92,13 @@ class UserValidation extends Validation
             $this->addErrorType('invalidName');
         }
 
-        if ($this->constraint->maxLength($value, 20)) {
-            $this->addError($this->constraint->maxLength($value, 20,$fieldName));
+        if ($this->constraint->maxLength($value, 40)) {
+            $this->addError($this->constraint->maxLength($value, 40,$fieldName));
+            $this->addErrorType('invalidName');
+        }
+
+        if ($this->constraint->noNum($value)) {
+            $this->addError($this->constraint->noNum($value,$fieldName));
             $this->addErrorType('invalidName');
         }
     }
@@ -108,6 +113,11 @@ class UserValidation extends Validation
 
         if ($this->constraint->maxLength($value, 20)) {
             $this->addError($this->constraint->maxLength($value, 20,$fieldName));
+            $this->addErrorType('invalidFirstName');
+        }
+
+        if ($this->constraint->noNum($value)) {
+            $this->addError($this->constraint->noNum($value,$fieldName));
             $this->addErrorType('invalidFirstName');
         }
     }

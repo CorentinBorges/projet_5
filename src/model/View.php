@@ -16,7 +16,7 @@ class View
     {
         $this->vars = [];
         $this->loader = new FilesystemLoader(__DIR__.'/../../templates');
-        $this->twig = new Environment($this->loader, array('cache' => false));
+        $this->twig = new Environment($this->loader, array('cache' => false));//TODO: cache true for prod
     }
 
     public function render($page)
