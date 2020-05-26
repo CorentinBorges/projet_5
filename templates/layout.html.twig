@@ -92,7 +92,7 @@
 
 {{ block ('content')}}
 
-<div id="CGU-container" class='CGU' style="display: none"> {#TODO: style in css#}
+<div class='CGU' id="CGU-container"  style="display: none">
     <object type="application/pdf" id='CV' data="/projet_5/public/docs/CGU.pdf" ></object>
 </div>
 <hr class="mt-5">
@@ -150,7 +150,7 @@
             </ul>
             <div class='col-lg-3 mx-auto text-center mt-5'>
                 {% if admin is defined %}
-                <a href="admin/home" class='config-link'>Configurer le site</a>
+                <a href="/Projet_5/public/index.php?route=adminHome" class='config-link'>Configurer le site</a>
                 {% endif %}
             </div>
         </div>

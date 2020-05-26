@@ -68,6 +68,14 @@ class Router
                 elseif ($route === 'disconnect') {
                     $this->backController->disconnect();
                 }
+                elseif ($route === 'adminHome') {
+                    if ($session->get('admin')) {
+                        $this->backController->adminHome();
+                    }
+                    else {
+                        $this->errorControlller->errorNotAdmin();
+                    }
+                }
                 else
                 {
                     $this->errorControlller->errorNotFound();
