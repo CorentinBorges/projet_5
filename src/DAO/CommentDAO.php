@@ -11,8 +11,8 @@ class CommentDAO extends DAO
                 JOIN users ON user_id=users.id 
                 WHERE post_id= ? AND comment.valid= ? ORDER BY id DESC";
         $result=$this->createQuery($req, [$postId,true])->fetchAll();
+        $posts = [];
         if ($result) {
-            $posts = [];
             foreach ($result as $post){
                     $post['date'] = new \DateTime($post['date']);
                 $post['date']=date_format($post['date'],'j/m/Y');

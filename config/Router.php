@@ -47,7 +47,11 @@ class Router
 
             if (isset($route)) {
 
-                if ($route === 'posts') {
+                if ($route === 'CV'){
+                    $this->frontController->CV();
+                }
+
+                elseif ($route === 'posts') {
                     $this->frontController->posts();
                 }
                 elseif ($route ==='post'){

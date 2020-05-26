@@ -8,16 +8,21 @@ use App\src\DAO\CommentDAO;
 class FrontController extends MainController
 {
 
+    public function home()
+    {
+        $this->view->render('home.html.twig');
+    }
+
+    public function CV()
+    {
+        $this->view->render('CV.html.twig');
+    }
+
     public function posts()
     {
         $list = $this->articleDAO->getArticles();
         $this->view->addVar('list',$list);
         $this->view->render('posts.html.twig');
-    }
-
-    public function home()
-    {
-        $this->view->render('home.html.twig');
     }
 
     public function post($id)
