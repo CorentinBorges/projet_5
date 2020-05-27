@@ -1,0 +1,30 @@
+{% extends 'adminLayout.html.twig' %}
+{% block content %}
+    <div class="col-12 mt-3 text-center pl-md-5 pl-sm-2 col-sm-6 mx-auto">
+        <h2>Commentaires non validés</h2>
+    </div>
+
+
+    <div class="container">
+        <div class="ml-3 row">
+            <input type="checkbox" class="mr-3" value="{{ comment.id }}"/>
+            <p>Tout sélectionner</p>
+            <a>Valider la sélection</a>
+        </div>
+        <div class="row justify-content-center ">
+            <input type="checkbox" class="" value="{{ comment.id }}"/>
+            <div class="ml-2 col-8">
+                <p>auteur <span class="font-italic">date</spanclass></p>
+                <p>ambled it to make a type specimen book. It has survived not only five centuries</p>
+            </div>
+        </div>
+        <div class="row justify-content-center ">
+            <input type="checkbox" class="" value="{{ comment.id }}"/>
+            <div class="ml-2 col-8">
+                <p>auteur <span class="font-italic">date</spanclass></p>
+                <p>ambled it to make a type specimen book. It has survived not only five centuries</p>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
