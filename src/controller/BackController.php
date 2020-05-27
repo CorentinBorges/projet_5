@@ -31,6 +31,7 @@ class BackController extends MainController
     {
         if ($post->get('delete')) {
             $this->commentDAO->delComments($get->get('postId'));
+
             $this->articleDAO->deleteArticle($get->get('postId'));
             $this->response->redirect('/projet_5/public/index.php?route=adminPosts');
         }
@@ -74,6 +75,21 @@ class BackController extends MainController
         $this->view->addVar('id',$article->getId());
         $this->view->addVar('editPost','editPost');
         $this->view->render('postForm.html.twig');
+    }
+
+    public function comments(Parameter $post)
+    {
+        if ($post->get('validComments')) {
+
+            foreach ($post->all() as $postId => $comId) {
+                if (preg_match('#^com-([0-9]+)$#',$postId,$match)) {
+                    $this->commentDAO->validOne($match[1]);
+                }
+            }
+        }
+        $comments=$this->commentDAO->getNonValid();
+        $this->view->addVar('comments',$comments);
+        $this->view->render('comments.html.twig');
     }
 
 

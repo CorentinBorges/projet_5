@@ -4,27 +4,29 @@
         <h2>Commentaires non validés</h2>
     </div>
 
+    <div class="container ">
+        <form class=" mx-auto col-lg-8" method="post" action="/projet_5/public/index.php?route=comments">
+            {% for comment in comments %}
+                <div class="form-group container checkComBox row">
+                    <input type="checkbox" id="box-{{ comment.id }}" name="com-{{ comment.id }}" value="{{ comment.id }}"/>
+                    <label for="box-{{ comment.id }}" class="ml-2 col-8">
+                        <p>{{ comment.author }} <span class="font-italic">{{ comment.date }}</span></p>
+                        <p>{{ comment.content }}</p>
+                    </label>
+                </div>
+            {% endfor %}
 
-    <div class="container">
-        <div class="ml-3 row">
-            <input type="checkbox" class="mr-3" value="{{ comment.id }}"/>
-            <p>Tout sélectionner</p>
-            <a>Valider la sélection</a>
-        </div>
-        <div class="row justify-content-center ">
-            <input type="checkbox" class="" value="{{ comment.id }}"/>
-            <div class="ml-2 col-8">
-                <p>auteur <span class="font-italic">date</spanclass></p>
-                <p>ambled it to make a type specimen book. It has survived not only five centuries</p>
+
+            <div class="form-group">
+                <input type="checkbox" id="all"  value="all"/>
+                <label for="all">Tout sélectionner</label>
             </div>
-        </div>
-        <div class="row justify-content-center ">
-            <input type="checkbox" class="" value="{{ comment.id }}"/>
-            <div class="ml-2 col-8">
-                <p>auteur <span class="font-italic">date</spanclass></p>
-                <p>ambled it to make a type specimen book. It has survived not only five centuries</p>
+            <div class="form-group text-center">
+                <button type="submit" name="validComments" value="valid" class="btn btn-success">Valider la sélection</button>
+                <button type="submit" class="btn btn-danger mt-5 mt-lg-0  ml-md-5">Supprimer la sélection</button>
             </div>
-        </div>
+        </form>
+
 
     </div>
 {% endblock %}

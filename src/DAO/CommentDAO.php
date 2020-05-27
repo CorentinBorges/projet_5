@@ -48,9 +48,29 @@ class CommentDAO extends DAO
         return $result->fetchColumn();
     }
 
+    public function getNonValid()
+    {
+        $req = 'SELECT comment.id,user_id,post_id,content,date,comment.valid,users.pseudo AS author FROM comment
+                JOIN users ON user_id=users.id 
+                WHERE comment.valid= ? ORDER BY comment.id DESC';
+        $result = $this->createQuery($req, [0])->fetchAll();
+        $comments = [];
+        foreach ($result as $comment) {
+            $comment['date'] = $this->dateFormat($comment['date']);
+            $comments[] = $this->buildObject($comment);
+        }
+        return $comments;
+    }
+
     public function delComments($postId)
     {
         $req = "DELETE FROM comment WHERE post_id=?";
         $this->createQuery($req, [$postId]);
+    }
+
+    public function validOne($id)
+    {
+        $req="UPDATE comment SET valid= ? WHERE id= ?";
+        $this->createQuery($req, [1, $id]);
     }
 }

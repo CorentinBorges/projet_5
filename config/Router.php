@@ -103,6 +103,16 @@ class Router
                         $this->errorControlller->errorNotAdmin();
                     }
                 }
+
+                elseif ($route === 'comments') {
+                    if ($session->get('admin')) {
+                        $this->backController->comments($post);
+                    }
+                    else {
+                        $this->errorControlller->errorNotAdmin();
+                    }
+                }
+
                 else
                 {
                     $this->errorControlller->errorNotFound();
