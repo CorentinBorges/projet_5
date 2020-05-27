@@ -5,22 +5,22 @@ use App\config\Parameter;
 
 class CommentDAO extends DAO
 {
+
     public function getComment($postId)
     {
         $req = "SELECT comment.id,user_id,post_id,content,date,comment.valid,users.pseudo AS author FROM comment
                 JOIN users ON user_id=users.id 
                 WHERE post_id= ? AND comment.valid= ? ORDER BY id DESC";
         $result=$this->createQuery($req, [$postId,true])->fetchAll();
-        $posts = [];
+        $comments = [];
         if ($result) {
-            foreach ($result as $post){
-                    $post['date'] = new \DateTime($post['date']);
-                $post['date']=date_format($post['date'],'j/m/Y');
-                $posts[]=$post;
+            foreach ($result as $comment){
+                $comment['date'] = $this->dateFormat($comment['date']);
+                $comments[]=$comment;
             }
         }
 
-        return $posts;
+        return $comments;
     }
 
     public function setComment($admin,$postId,$userId,$content)

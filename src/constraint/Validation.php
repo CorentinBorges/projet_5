@@ -44,6 +44,12 @@ class Validation
             $errors = $mailValidation->check($data);
             return $errors;
         }
+
+        if ($name === 'article') {
+            $postValidation = new ArticleValidation();
+            $errors = $postValidation->check($data);
+            return $errors;
+        }
     }
 
     public function errorType()
