@@ -63,4 +63,9 @@ class ArticleDAO extends DAO
         $this->createQuery($req,[$post->get('title'), $post->get('chapo'), $post->get('content'), $Session->get('pseudo')]);
     }
 
+    public function updateArticle(Parameter $post,Parameter $get)
+    {
+        $req = "UPDATE post SET title= ?, chapo= ?, content=?, date_modif=DATE(NOW()) WHERE id= ?";
+        $this->createQuery($req, [$post->get('title'), $post->get('chapo'), $post->get('content'),$get->get('postId')]);
+    }
 }

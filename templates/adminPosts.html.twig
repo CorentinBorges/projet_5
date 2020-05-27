@@ -28,11 +28,11 @@
                         </h4>
                         <p class="post-meta">Ecrit par {{ post.author }} le {{ post.dateCreation}} {% if post.dateModif is not empty %} Modifié le {{ post.dateModif }} {% endif %} </p>
                         <div class="text-right">
-                            <a href="admin/editPost-{{ post.id }}" class="mr-3 edit-post">Modifier</a>
+                            <a href="/projet_5/public/index.php?route=editPost&amp;postId={{ post.id }}" class="mr-3 edit-post">Modifier</a>
                             <button type="button" data-toggle="modal" data-target="{{ '#del-' ~ post.id }}" class="del-post">Supprimer</button>
                         </div>
                         <form method="post" action="/blog/admin/del-post">
-                            <div class="modal fade" id="{{ 'del-' ~ post.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="del-{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
