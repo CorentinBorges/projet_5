@@ -77,7 +77,7 @@ class BackController extends MainController
         $this->view->render('postForm.html.twig');
     }
 
-    public function comments(Parameter $post)
+    public function notValidComments(Parameter $post)
     {
         if ($post->get('validComments')) {
 
@@ -86,10 +86,21 @@ class BackController extends MainController
                     $this->commentDAO->validOne($match[1]);
                 }
             }
+            $this->view->addVar('commentValid','Comment valid');
+        }
+
+        elseif ($post->get('delComments')) {
+
+            foreach ($post->all() as $postId => $comId) {
+                if (preg_match('#^com-([0-9]+)$#',$postId,$match)) {
+                    $this->commentDAO->delOne($match[1]);
+                }
+            }
+            $this->view->addVar('commentDel','CommentDel');
         }
         $comments=$this->commentDAO->getNonValid();
         $this->view->addVar('comments',$comments);
-        $this->view->render('comments.html.twig');
+        $this->view->render('noValidComments.html.twig');
     }
 
 
