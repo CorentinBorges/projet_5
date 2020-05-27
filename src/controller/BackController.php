@@ -103,5 +103,12 @@ class BackController extends MainController
         $this->view->render('noValidComments.html.twig');
     }
 
+    public function validComments(Parameter $post)
+    {
+        $comments = $this->commentDAO->getValid();
+        $this->view->addVar('comments',$comments);
+        $this->view->render('validComments.html.twig');
+    }
+
 
 }

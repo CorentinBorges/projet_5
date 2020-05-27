@@ -41,11 +41,18 @@ class CommentDAO extends DAO
         $this->createQuery($req, [$userId, $postId, $content, $isAdmin]);
     }
 
-    public function nonValidCount()
+    public function getValid()
     {
-        $req = 'SELECT COUNT(id) FROM comment WHERE valid=?';
-        $result = $this->createQuery($req, [0]);
-        return $result->fetchColumn();
+        $req = 'SELECT comment.id,user_id,post_id,content,date,comment.valid,users.pseudo AS author FROM comment
+                JOIN users ON user_id=users.id 
+                WHERE comment.valid= ? ORDER BY comment.id DESC';
+        $result = $this->createQuery($req, [1])->fetchAll();
+        $comments = [];
+        foreach ($result as $comment) {
+            $comment['date'] = $this->dateFormat($comment['date']);
+            $comments[] = $this->buildObject($comment);
+        }
+        return $comments;
     }
 
     public function getNonValid()
@@ -60,6 +67,13 @@ class CommentDAO extends DAO
             $comments[] = $this->buildObject($comment);
         }
         return $comments;
+    }
+
+    public function nonValidCount()
+    {
+        $req = 'SELECT COUNT(id) FROM comment WHERE valid=?';
+        $result = $this->createQuery($req, [0]);
+        return $result->fetchColumn();
     }
 
     public function delComments($postId)
