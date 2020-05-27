@@ -31,7 +31,7 @@
                             <a href="/projet_5/public/index.php?route=editPost&amp;postId={{ post.id }}" class="mr-3 edit-post">Modifier</a>
                             <button type="button" data-toggle="modal" data-target="{{ '#del-' ~ post.id }}" class="del-post">Supprimer</button>
                         </div>
-                        <form method="post" action="/blog/admin/del-post">
+                        <form method="post" action="/projet_5/public/index.php?route=adminPosts&amp;postId={{ post.id }}">
                             <div class="modal fade" id="del-{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -46,7 +46,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" name="edit" value="{{ 'edit-' ~ post.id }}" class="btn btn-success" data-dismiss="modal">Non</button>
-                                            <button value="{{ 'del-' ~ post.id }}" name="delete" type="submit" class=" btn btn-danger del-btn">Oui</button>
+                                            <button value="delete" name="delete" type="submit" class=" btn btn-danger del-btn">Oui</button>
                                         </div>
                                     </div>
                                 </div>

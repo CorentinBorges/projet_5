@@ -80,7 +80,7 @@ class Router
                 }
                 elseif ($route === 'adminPosts') {
                     if ($session->get('admin')) {
-                        $this->backController->posts();
+                        $this->backController->posts($post,$get);
                     }
                     else {
                         $this->errorControlller->errorNotAdmin();

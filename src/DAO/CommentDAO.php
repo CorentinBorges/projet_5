@@ -47,4 +47,10 @@ class CommentDAO extends DAO
         $result = $this->createQuery($req, [0]);
         return $result->fetchColumn();
     }
+
+    public function delComments($postId)
+    {
+        $req = "DELETE FROM comment WHERE post_id=?";
+        $this->createQuery($req, [$postId]);
+    }
 }
