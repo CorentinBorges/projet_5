@@ -68,6 +68,12 @@ class CommentDAO extends DAO
         $this->createQuery($req, [$postId]);
     }
 
+    public function delOne($id)
+    {
+        $req = "DELETE FROM comment WHERE id=?";
+        $this->createQuery($req, [$id]);
+    }
+
     public function validOne($id)
     {
         $req="UPDATE comment SET valid= ? WHERE id= ?";

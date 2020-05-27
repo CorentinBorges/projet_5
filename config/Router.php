@@ -104,9 +104,9 @@ class Router
                     }
                 }
 
-                elseif ($route === 'comments') {
+                elseif ($route === 'noValidComments') {
                     if ($session->get('admin')) {
-                        $this->backController->comments($post);
+                        $this->backController->notValidComments($post);
                     }
                     else {
                         $this->errorControlller->errorNotAdmin();
