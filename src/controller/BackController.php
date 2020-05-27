@@ -46,7 +46,29 @@ class BackController extends MainController
                 $this->response->redirect('/projet_5/public/index.php?route=adminPosts');
             }
         }
-        $this->view->render('addPost.html.twig');
+        $this->view->addVar('addPost','addPost');
+        $this->view->render('postForm.html.twig');
+    }
+
+    public function editPost(Parameter $post,Parameter $get)
+    {
+        if ($post->get('editPost')) {
+            $errors = $this->validation->Validate($post, 'article');
+            if ($errors) {
+                $this->view->addVar('errors',$errors);
+            }
+            else {
+                $this->articleDAO->updateArticle($post,$get);
+                $this->response->redirect('/projet_5/public/index.php?route=adminPosts');
+            }
+        }
+        $article=$this->articleDAO->getArticle($get->get('postId'));
+        $this->view->addVar('title',$article->getTitle());
+        $this->view->addVar('chapo',$article->getChapo());
+        $this->view->addVar('content',$article->getContent());
+        $this->view->addVar('id',$article->getId());
+        $this->view->addVar('editPost','editPost');
+        $this->view->render('postForm.html.twig');
     }
 
 }

@@ -31,6 +31,8 @@ class Router
         $cookie = $this->request->getCookie();
         $session = $this->request->getSession();
         $route = $this->request->getGet()->get('route');
+        $get = $this->request->getGet();
+        $post = $this->request->getPost();
 
         if ($cookie->get('pseudo')) {
             $session->set('pseudo',$cookie->get('pseudo'));
@@ -54,13 +56,13 @@ class Router
                     $this->frontController->posts();
                 }
                 elseif ($route ==='post'){
-                    $this->frontController->post($this->request->getGet()->get('postId'));
+                    $this->frontController->post($get->get('postId'));
                   }
                 elseif ($route === 'login') {
-                    $this->frontController->login($this->request->getPost());
+                    $this->frontController->login($post);
                 }
                 elseif ($route === 'signIn') {
-                    $this->frontController->signIn($this->request->getPost());
+                    $this->frontController->signIn($post);
                 }
                 elseif ($route === 'validSignIn') {
                     $this->frontController->validSignIn();
@@ -86,7 +88,16 @@ class Router
                 }
                 elseif ($route === 'addPost') {
                     if ($session->get('admin')) {
-                        $this->backController->addPost($this->request->getPost());
+                        $this->backController->addPost($post);
+                    }
+                    else {
+                        $this->errorControlller->errorNotAdmin();
+                    }
+                }
+
+                elseif ($route === 'editPost') {
+                    if ($session->get('admin')) {
+                        $this->backController->editPost($post,$get);
                     }
                     else {
                         $this->errorControlller->errorNotAdmin();
@@ -99,7 +110,7 @@ class Router
             }
             else {
 
-                $this->frontController->home($this->request->getPost());
+                $this->frontController->home($post);
             }
 //        }
         /*catch (\Exception $e) {
