@@ -27,8 +27,13 @@ class BackController extends MainController
         $this->view->render('adminHome.html.twig');
     }
 
-    public function posts()
+    public function posts(Parameter $post,Parameter $get)
     {
+        if ($post->get('delete')) {
+            $this->commentDAO->delComments($get->get('postId'));
+            $this->articleDAO->deleteArticle($get->get('postId'));
+            $this->response->redirect('/projet_5/public/index.php?route=adminPosts');
+        }
         $posts = $this->articleDAO->getArticles();
         $this->view->addVar('list',$posts);
         $this->view->render('adminPosts.html.twig');
@@ -70,5 +75,6 @@ class BackController extends MainController
         $this->view->addVar('editPost','editPost');
         $this->view->render('postForm.html.twig');
     }
+
 
 }

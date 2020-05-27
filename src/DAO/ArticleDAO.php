@@ -68,4 +68,10 @@ class ArticleDAO extends DAO
         $req = "UPDATE post SET title= ?, chapo= ?, content=?, date_modif=DATE(NOW()) WHERE id= ?";
         $this->createQuery($req, [$post->get('title'), $post->get('chapo'), $post->get('content'),$get->get('postId')]);
     }
+
+    public function deleteArticle($id)
+    {
+        $req = "DELETE FROM post WHERE id=?";
+        $this->createQuery($req, [$id]);
+    }
 }
