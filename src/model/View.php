@@ -21,13 +21,13 @@ class View
 
     public function render($page)
     {
-        try {
+//        try { TODO: remove comment
             ob_start();
             echo $this->twig->render($page,$this->vars);
-        }
-        catch (\Exception $e) {
+//        }
+        /*catch (\Exception $e) {
             echo "Le fichier demandé n'éxiste pas";
-        }
+        }*/
     }
 
     public function addVar($key, $value)

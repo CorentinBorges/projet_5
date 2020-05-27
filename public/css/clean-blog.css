@@ -499,7 +499,6 @@ footer .copyright {
 
   #homePic
   {
-
     background-image: url("../../public/pictures/Home.jpg");
   }
 
@@ -652,4 +651,23 @@ footer .copyright {
 #title , #chapo
 {
   resize: none;
+}
+
+/*=========Comments==========*/
+
+#validCom
+{
+  text-decoration: none;
+  color: limegreen;
+}
+
+#validCom:hover
+{
+  text-decoration: underline;
+}
+
+.checkComBox
+{
+  border: black 1px solid;
+
 }
