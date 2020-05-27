@@ -90,7 +90,6 @@ class BackController extends MainController
         }
 
         elseif ($post->get('delComments')) {
-
             foreach ($post->all() as $postId => $comId) {
                 if (preg_match('#^com-([0-9]+)$#',$postId,$match)) {
                     $this->commentDAO->delOne($match[1]);
@@ -105,6 +104,14 @@ class BackController extends MainController
 
     public function validComments(Parameter $post)
     {
+        if ($post->get('delComments')) {
+                foreach ($post->all() as $postId => $comId) {
+                    if (preg_match('#^com-([0-9]+)$#',$postId,$match)) {
+                        $this->commentDAO->delOne($match[1]);
+                    }
+                }
+                $this->view->addVar('commentDel','CommentDel');
+            }
         $comments = $this->commentDAO->getValid();
         $this->view->addVar('comments',$comments);
         $this->view->render('validComments.html.twig');
