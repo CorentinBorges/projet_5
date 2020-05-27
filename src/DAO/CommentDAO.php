@@ -2,10 +2,21 @@
 
 namespace App\src\DAO;
 use App\config\Parameter;
+use App\src\model\Comment;
 
 class CommentDAO extends DAO
 {
-
+    public function buildObject($datas)
+    {
+        $comment = new Comment();
+        $comment->setId($datas['id']);
+        $comment->setContent($datas['content']);
+        $comment->setDate($datas['date']);
+        $comment->setAuthor($datas['author']);
+        $comment->setPostId($datas['post_id']);
+        $comment->setValid($datas['valid']);
+        return $comment;
+    }
     public function getComment($postId)
     {
         $req = "SELECT comment.id,user_id,post_id,content,date,comment.valid,users.pseudo AS author FROM comment
@@ -16,7 +27,7 @@ class CommentDAO extends DAO
         if ($result) {
             foreach ($result as $comment){
                 $comment['date'] = $this->dateFormat($comment['date']);
-                $comments[]=$comment;
+                $comments[]=$this->buildObject($comment);
             }
         }
 
