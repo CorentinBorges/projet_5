@@ -63,13 +63,13 @@ class UserValidation extends Validation
             $this->addErrorType('invalidPass');
         }
 
-        if ($constraint->noLowerCase($value)) {
-            $this->addError($constraint->noLowerCase($value,$fieldName));
+        if ($constraint->hasLowerCase($value)) {
+            $this->addError($constraint->hasLowerCase($value,$fieldName));
             $this->addErrorType('invalidPass');
         }
 
-        if ($constraint->noUpperCase($value)) {
-            $this->addError($constraint->noUpperCase($value,$fieldName));
+        if ($constraint->hasUpperCase($value)) {
+            $this->addError($constraint->hasUpperCase($value,$fieldName));
             $this->addErrorType('invalidPass');
         }
 

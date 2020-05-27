@@ -1,13 +1,15 @@
 <?php
 
 namespace App\src\DAO;
+
 use App\src\model\Article;
+use App\config\Parameter;
+use App\config\Session;
 
 class ArticleDAO extends DAO
 {
     public function buildObject($datas)
     {
-
         $article = new Article();
         $article->setId($datas['id']);
         $article->setContent($datas['content']);
@@ -21,14 +23,17 @@ class ArticleDAO extends DAO
     public function getArticles()
     {
         $req="SELECT id,title,chapo,content,date_creation,date_modif,author FROM post ORDER BY id DESC";
-        $result=$this->createQuery($req);
+        $result=$this->createQuery($req)->fetchAll();
         $posts = [];
 
         foreach ($result as $article)
         {
+
+            $article['date_creation']= $this->dateFormat($article['date_creation']);
+            $article['date_modif'] = $this->dateFormat($article['date_modif']);
             $posts[]=$this->buildObject($article);
         }
-        $result->closeCursor();
+
         return $posts;
     }
 
@@ -52,5 +57,10 @@ class ArticleDAO extends DAO
         }
     }
 
+    public function addArticle(Parameter $post,Session $Session)
+    {
+        $req = "INSERT INTO post(title,chapo,content,date_creation,author) VALUES (?,?,?,DATE(NOW()),?)";
+        $this->createQuery($req,[$post->get('title'), $post->get('chapo'), $post->get('content'), $Session->get('pseudo')]);
+    }
 
 }

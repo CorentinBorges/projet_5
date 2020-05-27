@@ -76,6 +76,22 @@ class Router
                         $this->errorControlller->errorNotAdmin();
                     }
                 }
+                elseif ($route === 'adminPosts') {
+                    if ($session->get('admin')) {
+                        $this->backController->posts();
+                    }
+                    else {
+                        $this->errorControlller->errorNotAdmin();
+                    }
+                }
+                elseif ($route === 'addPost') {
+                    if ($session->get('admin')) {
+                        $this->backController->addPost($this->request->getPost());
+                    }
+                    else {
+                        $this->errorControlller->errorNotAdmin();
+                    }
+                }
                 else
                 {
                     $this->errorControlller->errorNotFound();

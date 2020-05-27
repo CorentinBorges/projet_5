@@ -7,8 +7,6 @@ abstract class DAO
 {
     private $connection;
 
-
-
     private function checkConnexion()
     {
         if ($this->connection === null) {
@@ -39,6 +37,13 @@ abstract class DAO
         }
         $query= $this->checkConnexion()->query($req);
         return $query;
+    }
+
+    protected function dateFormat($date)
+    {
+        $date = new \DateTime(($date));
+        $newDate = date_format($date, 'j/m/Y');
+        return $newDate;
     }
 
 

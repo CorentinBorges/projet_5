@@ -35,14 +35,14 @@ class Constraint
         }
     }
 
-    public function noLowerCase($value,$name=null)
+    public function hasLowerCase($value,$name=null)
     {
         if (!preg_match("#^(?=.*[a-z])#", $value)) {
             return 'Le champ '. $name ." doit comporter au moins une lettre minuscule";
         }
     }
 
-    public function noUpperCase($value,$name=null)
+    public function hasUpperCase($value,$name=null)
     {
         if (!preg_match('#^(?=.*[A-Z])#', $value)) {
             return 'Le champ '. $name ." doit comporter au moins une lettre majuscule";
