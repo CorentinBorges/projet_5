@@ -2,7 +2,7 @@
 {% block content %}
     <div class="col-12 mt-3 text-center pl-md-5 pl-sm-2 col-sm-6 mx-auto">
         <h2>Utilisateurs non validés</h2>
-        <a href="/projet_5/public/index.php?route=validCom" class="text-primary">Voir les utilisateurs</a>
+        <a href="/projet_5/public/index.php?route=validUsers" class="text-primary">Voir les utilisateurs validés</a>
     </div>
 
     <div class="container mt-5">
@@ -12,10 +12,10 @@
                 <input class='checkValid' type="checkbox" id="box-{{ user.id }}" name="com-{{ user.id }}" value="{{ user.id }}"/>
                 <label for="box-{{ user.id }}" class="ml-2 col-8">
                     <u class="user-list">
-                        <li>{{ user.name}}</li>
-                        <li>{{ user.firstName }}</li>
-                        <li>{{ user.pseudo }}</li>
-                        <li>{{ user.mail }}</li>
+                        <li><span class="font-weight-bold" >Nom : </span>{{ user.name}}</li>
+                        <li><span class="font-weight-bold" >Prénom : </span>{{ user.firstName }}</li>
+                        <li><span class="font-weight-bold" >Pseudo : </span>{{ user.pseudo }}</li>
+                        <li><span class="font-weight-bold" >Mail : </span>{{ user.mail }}</li>
                     </u>
                 </label>
             </div>

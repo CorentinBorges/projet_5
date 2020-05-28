@@ -146,7 +146,7 @@ class FrontController extends MainController
     {
         if($post->get('submit'))
         {
-            $checkUser=$this->userDAO->getUser($post);
+            $checkUser=$this->userDAO->login($post);
             if ($checkUser && $checkUser['valid']===1 && $checkUser['pass']) {
                 $this->session->set('pseudo',$post->get('pseudo'));
                 $this->session->set('id',$checkUser['id']);

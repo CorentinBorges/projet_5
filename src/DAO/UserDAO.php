@@ -62,7 +62,7 @@ class UserDAO extends DAO
         }
     }
 
-    public function getUser(Parameter $post)
+    public function login(Parameter $post)
     {
         $req = "SELECT id,password,role_id,valid FROM users WHERE pseudo=?";
         $result = $this->createQuery($req, [$post->get('pseudo')]);
@@ -91,5 +91,16 @@ class UserDAO extends DAO
     {
         $req = 'UPDATE users SET valid=? WHERE id=?';
         $this->createQuery($req, [1, $id]);
+    }
+
+    public function getValid()
+    {
+        $req="SELECT id,name,first_name,pseudo,mail FROM users WHERE valid=? and role_id=?";
+        $result=$this->createQuery($req,[1,2])->fetchAll();
+        $users = [];
+        foreach ($result as $user) {
+            $users[]= $this->buildObject($user);
+        }
+        return $users;
     }
 }
