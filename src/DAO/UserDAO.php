@@ -23,7 +23,7 @@ class UserDAO extends DAO
     {
         $req = "INSERT INTO users(mail,password,name,first_name,pseudo,role_id) VALUES (?,?,?,?,?,?)";
         $this->createQuery($req, [  $post->get('mail'),
-                                    password_hash($post->get('password'),PASSWORD_BCRYPT,['cost'=>12]),
+                                    password_hash($post->get('pass'),PASSWORD_BCRYPT),
                                     $post->get('name'),
                                     $post->get('firstName'),
                                     $post->get('pseudo'),
@@ -69,6 +69,7 @@ class UserDAO extends DAO
         $datas=$result->fetch();
         if($datas){
             $checkPass = password_verify($post->get('pass'), $datas['password']);
+            var_dump($checkPass);
             $admin = (int)$datas['role_id']===1;
             return ['pass'=>$checkPass, 'id'=>$datas['id'], 'admin'=>$admin,'valid'=>(int)$datas['valid']];
         }
