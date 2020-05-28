@@ -9,7 +9,16 @@ use App\config\Parameter;
 
 class UserDAO extends DAO
 {
-
+    public function buildObject($datas)
+    {
+        $userObj = new User();
+        $userObj->setId($datas['id']);
+        $userObj->setName($datas['name']);
+        $userObj->setFirstName($datas['first_name']);
+        $userObj->setMail($datas['mail']);
+        $userObj->setPseudo($datas['pseudo']);
+        return $userObj;
+    }
     public function register(Parameter $post)
     {
         $req = "INSERT INTO users(mail,password,name,first_name,pseudo,role_id) VALUES (?,?,?,?,?,?)";
@@ -19,6 +28,17 @@ class UserDAO extends DAO
                                     $post->get('firstName'),
                                     $post->get('pseudo'),
                                     2]);
+    }
+
+    public function getNotValid()
+    {
+        $req="SELECT id,name,first_name,pseudo,mail FROM users WHERE valid=?";
+        $result=$this->createQuery($req,[0])->fetchAll();
+        $users = [];
+        foreach ($result as $user) {
+            $users[]= $this->buildObject($user);
+        }
+        return $users;
     }
 
     public function pseudoExist(Parameter $post)
@@ -58,5 +78,11 @@ class UserDAO extends DAO
         $req = 'SELECT COUNT(id) FROM users WHERE valid=?';
         $result = $this->createQuery($req, [0]);
         return $result->fetchColumn();
+    }
+
+    public function validUser($id)
+    {
+        $req = 'UPDATE users SET valid=? WHERE id=?';
+        $this->createQuery($req, [1, $id]);
     }
 }

@@ -105,16 +105,32 @@ class BackController extends MainController
     public function validComments(Parameter $post)
     {
         if ($post->get('delComments')) {
-                foreach ($post->all() as $postId => $comId) {
-                    if (preg_match('#^com-([0-9]+)$#',$postId,$match)) {
-                        $this->commentDAO->delOne($match[1]);
-                    }
+            foreach ($post->all() as $postId => $comId) {
+                if (preg_match('#^com-([0-9]+)$#',$postId,$match)) {
+                    $this->commentDAO->delOne($match[1]);
                 }
-                $this->view->addVar('commentDel','CommentDel');
             }
+            $this->view->addVar('commentDel','CommentDel');
+        }
         $comments = $this->commentDAO->getValid();
         $this->view->addVar('comments',$comments);
         $this->view->render('validComments.html.twig');
+    }
+
+    public function users(Parameter $post)
+    {
+        if ($post->get('validComments')) {
+
+            foreach ($post->all() as $postId => $userId) {
+                if (preg_match('#^com-([0-9]+)$#',$postId,$match)) {
+                    $this->userDAO->validUser($match[1]);
+                }
+            }
+            $this->view->addVar('userValid','userValid');
+        }
+        $users=$this->userDAO->getNotValid();
+        $this->view->addVar('users',$users);
+        $this->view->render('users.html.twig');
     }
 
 

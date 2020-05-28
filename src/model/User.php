@@ -12,6 +12,17 @@ class User
     private $name;
     private $firstName;
     private $valid;
+    private $pseudo;
+
+    public function getPseudo()
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo($pseudo)
+    {
+        $this->pseudo = $pseudo;
+    }
     private $roleId;
 
     public function getId()

@@ -83,5 +83,4 @@ $('#all').click(function () {
     else {
         $('.checkValid').removeAttr('checked','');
     }
-
 });

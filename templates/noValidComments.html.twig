@@ -6,7 +6,7 @@
     </div>
 
     <div class="container mt-5">
-        <form class=" mx-auto col-lg-8" method="post" action="/projet_5/public/index.php?route=noValidComments">
+        <form class=" mx-auto col-lg-8" method="post" action="/projet_5/public/index.php?route=users">
             {% for comment in comments %}
                 <div class="form-group container checkComBox row">
                     <input class='checkValid' type="checkbox" id="box-{{ comment.id }}" name="com-{{ comment.id }}" value="{{ comment.id }}"/>
@@ -60,7 +60,7 @@
                     </button>
 
                     <div class="modal-body text-center">
-                        <p>Les commentaires on étés validés</p>
+                        <p>Les commentaires ont été validés</p>
                     </div>
                 </div>
             </div>
