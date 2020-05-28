@@ -44,7 +44,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button"  class="btn btn-success" data-dismiss="modal">Non</button>
-                        <button value="delete" name="delComments" type="submit" class=" btn btn-danger del-btn">Oui</button>
+                        <button value="delete" name="delUsers" type="submit" class=" btn btn-danger del-btn">Oui</button>
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                 </div>
             </div>
         </div>
-    {% elseif commentDel is defined %}
+    {% elseif userDel is defined %}
         <div class="modal box-comment-bg fade show pt-5  " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false" style="">
             <div class="modal-dialog" role="document">
                 <div class="modal-content confirm-comment">
@@ -78,7 +78,7 @@
                     </button>
 
                     <div class="modal-body text-center">
-                        <p>Les commentaires on étés supprimés</p>
+                        <p>Les utilistateurs ont été supprimés</p>
                     </div>
                 </div>
             </div>

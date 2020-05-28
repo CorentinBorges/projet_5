@@ -74,6 +74,12 @@ class UserDAO extends DAO
         }
     }
 
+    public function delOne($id)
+    {
+        $req = "DELETE FROM users WHERE id=?";
+        $this->createQuery($req, [$id]);
+    }
+
     public function nonValidCount()
     {
         $req = 'SELECT COUNT(id) FROM users WHERE valid=?';

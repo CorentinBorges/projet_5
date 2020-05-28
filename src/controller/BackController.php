@@ -128,6 +128,15 @@ class BackController extends MainController
             }
             $this->view->addVar('userValid','userValid');
         }
+
+        elseif ($post->get('delUsers')) {
+            foreach ($post->all() as $postId => $comId) {
+                if (preg_match('#^com-([0-9]+)$#',$postId,$match)) {
+                    $this->userDAO->delOne($match[1]);
+                }
+            }
+            $this->view->addVar('userDel','userDel');
+        }
         $users=$this->userDAO->getNotValid();
         $this->view->addVar('users',$users);
         $this->view->render('users.html.twig');
