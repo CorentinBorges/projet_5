@@ -126,6 +126,14 @@ class Router
                         $this->errorControlller->errorNotAdmin();
                     }
                 }
+                elseif ($route === 'validUsers') {
+                    if ($session->get('admin')) {
+                        $this->backController->validUsers($post);
+                    } else {
+                        $this->errorControlller->errorNotAdmin();
+                    }
+                }
+
                 else
                 {
                     $this->errorControlller->errorNotFound();
