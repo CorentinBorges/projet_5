@@ -146,8 +146,8 @@ class FrontController extends MainController
     {
         if($post->get('submit'))
         {
-            $checkUser=$this->userDAO->login($post);
-            if ($checkUser && $checkUser['valid']) {
+            $checkUser=$this->userDAO->getUser($post);
+            if ($checkUser && $checkUser['valid']===1 && $checkUser['pass']) {
                 $this->session->set('pseudo',$post->get('pseudo'));
                 $this->session->set('id',$checkUser['id']);
                 if ($checkUser['admin']) {
@@ -161,6 +161,9 @@ class FrontController extends MainController
                     }
                 }
                 $this->response->redirect('/projet_5/public/index.php');
+            }
+            elseif ($checkUser && $checkUser['valid'] === 0) {
+                $this->view->addVar('error', "Votre compte n'a pas encore été validé");
             }
             else {
                 $this->view->addVar('error',"Le nom d'utilisateur ou le mot de passe sont incorrects");

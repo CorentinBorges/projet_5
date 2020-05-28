@@ -30,6 +30,7 @@ class UserDAO extends DAO
                                     2]);
     }
 
+
     public function getNotValid()
     {
         $req="SELECT id,name,first_name,pseudo,mail FROM users WHERE valid=?";
@@ -61,15 +62,15 @@ class UserDAO extends DAO
         }
     }
 
-    public function login(Parameter $post)
+    public function getUser(Parameter $post)
     {
-        $req = "SELECT id,password,role_id FROM users WHERE pseudo=?";
+        $req = "SELECT id,password,role_id,valid FROM users WHERE pseudo=?";
         $result = $this->createQuery($req, [$post->get('pseudo')]);
         $datas=$result->fetch();
         if($datas){
-            $checkUser = password_verify($post->get('pass'), $datas['password']);
+            $checkPass = password_verify($post->get('pass'), $datas['password']);
             $admin = (int)$datas['role_id']===1;
-            return ['valid'=>$checkUser, 'id'=>$datas['id'], 'admin'=>$admin];
+            return ['pass'=>$checkPass, 'id'=>$datas['id'], 'admin'=>$admin,'valid'=>(int)$datas['valid']];
         }
     }
 
