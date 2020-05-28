@@ -48,14 +48,7 @@ $("body").click(function(event) {
 x=0;
 
 
-while( x<6){
-
-    $("."+x+".text-danger").click(function() {
-        $(this).removeClass('text-danger');
-    });
-    x++;
-}
-
+/*==========General=========*/
 $('.CGU').click(function(event) {
     $('.CGU').hide();
 });
@@ -69,3 +62,26 @@ $('#top-btn').click(function () {
         $(document).scrollTop( $("#top").offset().top-100 );
 })
 
+/*=========Forms=========*/
+while( x<6){
+
+    $("."+x+".text-danger").click(function() {
+        $(this).removeClass('text-danger');
+    });
+    x++;
+}
+
+/*======admin Forms======*/
+var attr = $(this).attr('checked','checked');
+
+
+
+$('#all').click(function () {
+    if ($('#all').prop( "checked" )) {
+        $('.checkValid').attr("checked","checked");;
+    }
+    else {
+        $('.checkValid').removeAttr('checked','');
+    }
+
+});
