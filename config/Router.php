@@ -119,7 +119,13 @@ class Router
                         $this->errorControlller->errorNotAdmin();
                     }
                 }
-
+                elseif ($route === 'users') {
+                    if ($session->get('admin')) {
+                        $this->backController->users($post);
+                    } else {
+                        $this->errorControlller->errorNotAdmin();
+                    }
+                }
                 else
                 {
                     $this->errorControlller->errorNotFound();
