@@ -78,9 +78,9 @@ var attr = $(this).attr('checked','checked');
 
 $('#all').click(function () {
     if ($('#all').prop( "checked" )) {
-        $('.checkValid').attr("checked","checked");
+        $('.checkValid').prop("checked",true);
     }
     else {
-        $('.checkValid').removeAttr('checked','checked');
+        $('.checkValid').prop('checked',false);
     }
 });

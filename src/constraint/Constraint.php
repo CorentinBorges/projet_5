@@ -27,6 +27,12 @@ class Constraint
         }
     }
 
+    public function hasSpecialChar($value,$name=null)
+    {
+        if (!ctype_punct($value)) {
+            return "Le champs " . $name . " doit contenir au moins un signe de ponctuation";
+        }
+    }
 
     public function hasNum($value,$name=null)
     {
