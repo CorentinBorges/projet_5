@@ -1,9 +1,6 @@
-/*!
- * Start Bootstrap - Clean Blog v5.0.8 (https://startbootstrap.com/template-overviews/clean-blog)
- * Copyright 2013-2019 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-clean-blog/blob/master/LICENSE)
- */
 
+
+/*==============WEBSITE==========*/
 body {
   font-size: 20px;
   color: #212529;
@@ -484,6 +481,11 @@ footer .copyright {
   margin-bottom: 20%;
 }
 
+/*========General==========*/
+#top-btn
+{
+  color: white;
+}
 /*==============Home====================*/
 
   .CV-link
@@ -513,9 +515,23 @@ footer .copyright {
 /*==========AllPosts=========*/
 
 
+#postPic
+{
+  background-image: url("../../public/pictures/news.jpg");
+  padding-bottom: 400px;
+}
+
 #postsPic
 {
   background-image: url("../../public/pictures/news.jpg");
+}
+
+@media all and (min-width: 576px )
+{
+  #postPic
+  {
+    padding-bottom: 0px;
+  }
 }
 
 /*==========CV===========*/
@@ -560,7 +576,10 @@ footer .copyright {
   background: rgba(0,0,0,0.2);
 }
 
-
+.CGU-container
+{
+  display: none;
+}
 
 .CGU-btn
 {
@@ -568,6 +587,8 @@ footer .copyright {
   border: none;
   font-style: italic;
 }
+
+
 
 .CGU-btn:hover
 {

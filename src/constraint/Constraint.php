@@ -29,7 +29,7 @@ class Constraint
 
     public function hasSpecialChar($value,$name=null)
     {
-        if (!ctype_punct($value)) {
+        if (!preg_match('#\?+|!+|\.+|:+|;+|,+$#',$value)) {
             return "Le champs " . $name . " doit contenir au moins un signe de ponctuation";
         }
     }
