@@ -13,6 +13,7 @@ This command will install all composer's dependencys.
 6. Configure the database infos in [this file](config/dev.php)
 7. Configure the mail infos [here](config/Mail.php) (I recommend to use [MailTrap](https://mailtrap.io/) to test sending mails, 
 you have a tuto at the end of this read me [How to use mailtrap](#how-to-use-mailtrap))
+8. Write 'localhost/projet_5/public' in the address bar of your favorite browser and press enter
 
 ###Installing Composer
 #####Windows installation
