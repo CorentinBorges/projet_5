@@ -54,7 +54,8 @@ $('.CGU').click(function(event) {
 });
 
 $('.CGU-btn').click(function(event) {
-    $('.CGU').show();  
+    $('.CGU').removeClass("CGU-container");
+    $('.CGU').show();
 });
 
 $('#top-btn').click(function () {

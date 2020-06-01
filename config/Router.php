@@ -44,8 +44,8 @@ class Router
         if ($this->request->getSession()->get('pseudo')) {
             $this->frontController->connect();
         }
-//TODO: active try/catch
-//        try {
+
+        try {
 
             if (isset($route)) {
 
@@ -143,11 +143,11 @@ class Router
 
                 $this->frontController->home($post);
             }
-//        }
-        /*catch (\Exception $e) {
+     }
+        catch (\Exception $e) {
 
             $this->errorControlller->errorServer();
-        }*/
+        }
     }
 
 }

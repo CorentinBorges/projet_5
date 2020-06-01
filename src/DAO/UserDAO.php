@@ -69,7 +69,6 @@ class UserDAO extends DAO
         $datas=$result->fetch();
         if($datas){
             $checkPass = password_verify($post->get('pass'), $datas['password']);
-            var_dump($checkPass);
             $admin = (int)$datas['role_id']===1;
             return ['pass'=>$checkPass, 'id'=>$datas['id'], 'admin'=>$admin,'valid'=>(int)$datas['valid']];
         }
