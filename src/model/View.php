@@ -12,7 +12,7 @@ class View
     private $vars;
     private $twig;
 
-    public function __construct()
+    /*public function __construct()
     {
         $this->vars = [];
         $this->loader = new FilesystemLoader(__DIR__.'/../../templates');
@@ -33,5 +33,5 @@ class View
     public function addVar($key, $value)
     {
         $this->vars[$key] = $value;
-    }
+    }*/
 }

@@ -4,26 +4,27 @@ namespace App\src\controller;
 
 use App\src\DAO\ArticleDAO;
 use App\src\DAO\CommentDAO;
+use App\config\Parameter;
 use App\config\Mail;
 
 class FrontController extends MainController
 {
 
-    public function home(\App\config\Parameter $post)
+    public function home(Parameter $post)
     {
         if($this->post->get('submitMail')){
             $errors=$this->validation->Validate($post, 'mail');
-            $errorTypes = $this->validation->getErrorType($post,'mail');
+            $errorFields = $this->validation->getErrorField($post,'mail');
             if ($errors) {
-                $this->view->addVar('errors',$errors);
-                foreach ($errorTypes as $errorType) {
-                    $this->view->addVar($errorType,'text-danger');
+                $this->session->set('errors',$errors);
+                foreach ($errorFields as $errorField) {
+                    $this->session->set($errorField,'text-danger');
                 }
-                $this->view->addVar('name',$post->get('name'));
-                $this->view->addVar('firstName',$post->get('firstName'));
-                $this->view->addVar('obj',$post->get('obj'));
-                $this->view->addVar('mail',$post->get('mail'));
-                $this->view->addVar('message',$post->get('message'));
+                $this->session->set('name',$post->get('name'));
+                $this->session->set('firstName',$post->get('firstName'));
+                $this->session->set('obj',$post->get('obj'));
+                $this->session->set('mail',$post->get('mail'));
+                $this->session->set('message',$post->get('message'));
             }
             else{
                 $transport = (new \Swift_SmtpTransport(mail::HOST_NAME, MAIL::PORT))
@@ -37,23 +38,22 @@ class FrontController extends MainController
                     ->setTo([mail::ADMIN_MAIL => mail::ADMIN_NAME])
                     ->setBody($post->get('message'),'text/html');
                 $mailer->send($message);
-                $this->view->addVar('confirm','confirm');
+                $this->session->set('confirm','Votre mail à bien été envoyé');
             }
 
         }
-        $this->view->render('home.html.twig');
+        $this->getTwig('home.html.twig');
     }
 
     public function CV()
     {
-        $this->view->render('CV.html.twig');
+        $this->getTwig('CV.html.twig');
     }
 
     public function posts()
     {
         $list = $this->articleDAO->getArticles();
-        $this->view->addVar('list',$list);
-        $this->view->render('posts.html.twig');
+        $this->getTwig('posts.html.twig',['list'=>$list]);
     }
 
     public function post($id)
@@ -63,23 +63,18 @@ class FrontController extends MainController
             if ($this->post->get('submitComment')) {
                 $errors = $this->validation->Validate($this->post, 'comment');
                 if($errors){
-                    $this->view->addVar('errors',$errors);
+                    $this->session->set('errors',$errors);
                 }
                 else
                 {
                     $this->commentDAO->setComment($this->session->get('admin'),$id,$this->session->get('id'),$this->post->get('comment'));
-                    $this->view->addVar($this->post->get('submitComment'),'submit');
                     if (!$this->session->get('admin')) {
-                        $this->view->addVar('commentSent','commentSent');
+                        $this->session->set('commentSent','Votre commentaire à été envoyé, il est en attente de validation');
                     }
-
                 }
-
             }
             $comments = $this->commentDAO->getComment($id);
-            $this->view->addVar('comments',$comments);
-            $this->view->addVar('post',$post);
-            $this->view->render('post.html.twig');
+            $this->getTwig('post.html.twig',['comments'=>$comments,'post'=>$post]);
         }
         else {
            $this->response->redirect('/projet_5/public/index.php?route=404');
@@ -88,13 +83,13 @@ class FrontController extends MainController
 
     }
 
-    public function signIn(\App\config\Parameter $post)
+    public function signIn(Parameter $post)
     {
         $errors = null;
 
         if ($post->get('submitLog')) {
             $errors=$this->validation->Validate($post,'user');
-            $errorTypes=$this->validation->getErrorType($post,'user');
+            $errorTypes=$this->validation->getErrorField($post,'user');
 
             if($this->userDAO->pseudoExist($post)){
                 $errors[] = $this->userDAO->pseudoExist($post);
@@ -118,31 +113,31 @@ class FrontController extends MainController
             if (isset($errorTypes)) {
 
                 foreach ($errorTypes as $value) {
-                    $this->view->addVar($value,'text-danger');
+                    $this->session->set($value,'text-danger');
                 }
             }
-            $this->view->addVar('name',$post->get('name'));
-            $this->view->addVar('firstName',$post->get('firstName'));
-            $this->view->addVar('mail',$post->get('mail'));
-            $this->view->addVar('alias',$post->get('pseudo'));
-            $this->view->addVar('pass',$post->get('pass'));
-            $this->view->addVar('confirmPass',$post->get('confirmPass'));
+            $this->session->set('name',$post->get('name'));
+            $this->session->set('firstName',$post->get('firstName'));
+            $this->session->set('mail',$post->get('mail'));
+            $this->session->set('alias',$post->get('pseudo'));
+            $this->session->set('pass',$post->get('pass'));
+            $this->session->set('confirmPass',$post->get('confirmPass'));
             if (empty($errors)) {
                 $this->userDAO->register($post);
-                header('Location: /projet_5/public/index.php?route=validSignIn');
+                $this->response->redirect('/projet_5/public/index.php?route=validSignIn');
             }
         }
 
-        $this->view->addVar('errors',$errors);
-        $this->view->render('signIn.html.twig');
+        $this->session->set('errors',$errors);
+        $this->getTwig('signIn.html.twig');
     }
 
     public function validSignIn()
     {
-        $this->view->render('validSignIn.html.twig');
+        $this->getTwig('validSignIn.html.twig');
     }
 
-    public function login(\App\config\Parameter $post)
+    public function login(Parameter $post)
     {
         if($post->get('submit'))
         {
@@ -163,27 +158,27 @@ class FrontController extends MainController
                 $this->response->redirect('/projet_5/public/index.php');
             }
             elseif ($checkUser && $checkUser['valid'] === 0) {
-                $this->view->addVar('error', "Votre compte n'a pas encore été validé");
+                $this->session->set('error', "Votre compte n'a pas encore été validé");
             }
             else {
-                $this->view->addVar('error',"Le nom d'utilisateur ou le mot de passe sont incorrects");
-                $this->view->addVar('alias',$post->get('pseudo'));
-                $this->view->addVar('pass',$post->get('pass'));
+                $this->session->set('error',"Le nom d'utilisateur ou le mot de passe sont incorrects");
+                $this->session->set('alias',$post->get('pseudo'));
+                $this->session->set('pass',$post->get('pass'));
             }
         }
-        $this->view->render('login.html.twig');
+        $this->getTwig('login.html.twig');
     }
 
 
-    public function connect()
+/*    public function connect()
     {
         if ($this->session->get('pseudo')) {
-            $this->view->addVar('pseudo',$this->session->get('pseudo'));
+            $this->session->set('pseudo',$this->session->get('pseudo'));
         }
         if ($this->session->get('admin')) {
             $this->view->addVar('admin','admin');
         }
-    }
+    }*/
 
 
 

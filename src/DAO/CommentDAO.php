@@ -26,7 +26,6 @@ class CommentDAO extends DAO
         $comments = [];
         if ($result) {
             foreach ($result as $comment){
-                $comment['date'] = $this->dateFormat($comment['date']);
                 $comments[]=$this->buildObject($comment);
             }
         }

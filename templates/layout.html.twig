@@ -25,7 +25,7 @@
 <div id="top"></div>
 <button  class="arrow-link" id="top-btn"><i class="fas d-none d-md-block fa-angle-double-up"></i></button>
 <!--Page Nav-->
-{% if pseudo is defined %}
+{% if session.get('pseudo') %}
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
         <img id='nav-pic' src='public/pictures/profil.png' alt='Corentin borges'/>
@@ -44,7 +44,7 @@
                 </li>
                 <div class="nav-devider-connect d-none d-lg-block mt-1"></div>
                 <li class="nav-item ">
-                    <span id='pseudo-nav' class='d-none d-lg-block ml-3'>{{pseudo}}</span>
+                    <span id='pseudo-nav' class='d-none d-lg-block ml-3'>{{session.get('pseudo')}}</span>
                     <a class="nav-link" id='disconnect' href="/projet_5/public/index.php?route=disconnect">Déconnexion</a>
                 </li>
             </ul>
@@ -147,7 +147,7 @@
                 <button class="nav-link CGU-btn">Conditions générales d'utilisation </button>
             </ul>
             <div class='col-lg-3 mx-auto text-center mt-5'>
-                {% if admin is defined %}
+                {% if session.get('admin') %}
                 <a href="/Projet_5/public/index.php?route=adminHome" class='config-link'>Configurer le site</a>
                 {% endif %}
             </div>

@@ -38,16 +38,16 @@ class MailValidation extends Validation
         $fieldName = 'Nom';
         if ($this->constraint->notBlanck($data)) {
             $this->addError($this->constraint->notBlanck($data,$fieldName));
-            $this->addErrorType('invalidName');
+            $this->addErrorField('invalidName');
         }
 
         if ($this->constraint->maxLength($data, 40)) {
             $this->addError($this->constraint->maxLength($data, 40,$fieldName));
-            $this->addErrorType('invalidName');
+            $this->addErrorField('invalidName');
         }
         if ($this->constraint->noNum($data)) {
             $this->addError($this->constraint->noNum($data,$fieldName));
-            $this->addErrorType('invalidName');
+            $this->addErrorField('invalidName');
         }
     }
 
@@ -56,16 +56,16 @@ class MailValidation extends Validation
         $fieldName = 'Prénom';
         if ($this->constraint->notBlanck($data)) {
             $this->addError($this->constraint->notBlanck($data,$fieldName));
-            $this->addErrorType('invalidFirstName');
+            $this->addErrorField('invalidFirstName');
         }
 
         if ($this->constraint->maxLength($data, 20)) {
             $this->addError($this->constraint->maxLength($data, 20,$fieldName));
-            $this->addErrorType('invalidFirstName');
+            $this->addErrorField('invalidFirstName');
         }
         if ($this->constraint->noNum($data)) {
             $this->addError($this->constraint->noNum($data,$fieldName));
-            $this->addErrorType('invalidFirstName');
+            $this->addErrorField('invalidFirstName');
         }
     }
 
@@ -74,12 +74,12 @@ class MailValidation extends Validation
         $fieldName = 'Objet';
         if ($this->constraint->notBlanck($data)) {
             $this->addError($this->constraint->notBlanck($data,$fieldName));
-            $this->addErrorType('invalidObj');
+            $this->addErrorField('invalidObj');
         }
 
         if ($this->constraint->maxLength($data, 20)) {
             $this->addError($this->constraint->maxLength($data, 20,$fieldName));
-            $this->addErrorType('invalidObj');
+            $this->addErrorField('invalidObj');
         }
     }
 
@@ -87,11 +87,11 @@ class MailValidation extends Validation
     {
         if ($this->constraint->notBlanck($data)) {
             $this->addError($this->constraint->notBlanck($data,'Mail'));
-            $this->addErrorType('invalidMail');
+            $this->addErrorField('invalidMail');
         }
         if (!filter_var($data, FILTER_VALIDATE_EMAIL)) {
             $this->addError('Le mail '. $data .' est invlalide');
-            $this->addErrorType('invalidMail');
+            $this->addErrorField('invalidMail');
         }
     }
 
@@ -100,12 +100,12 @@ class MailValidation extends Validation
         $fieldName = 'message';
         if ($this->constraint->notBlanck($data)) {
             $this->addError($this->constraint->notBlanck($data,$fieldName));
-            $this->addErrorType('invalidMessage');
+            $this->addErrorField('invalidMessage');
         }
 
         if ($this->constraint->maxLength($data, 250)) {
             $this->addError($this->constraint->maxLength($data, 250,$fieldName));
-            $this->addErrorType('invalidMessage');
+            $this->addErrorField('invalidMessage');
         }
 
     }

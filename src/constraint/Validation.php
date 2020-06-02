@@ -6,7 +6,7 @@ namespace App\src\constraint;
 class Validation
 {
     protected $errors;
-    protected $errorType;
+    protected $errorField;
     protected $constraint;
 
     public function __construct()
@@ -20,9 +20,9 @@ class Validation
         $this->errors[]=$error;
     }
 
-    protected function addErrorType($type)
+    protected function addErrorField($type)
     {
-        $this->errorType[]=$type;
+        $this->errorField[]=$type;
     }
 
     public function Validate($data,$name)
@@ -52,26 +52,26 @@ class Validation
         }
     }
 
-    public function errorType()
+    public function errorField()
     {
-        if($this->errorType)
+        if($this->errorField)
         {
-            return $this->errorType;
+            return $this->errorField;
         }
     }
 
-    public function getErrorType(\App\config\Parameter $datas,$name)
+    public function getErrorField(\App\config\Parameter $datas,$name)
     {
         if ($name==='user') {
             $userValidation = new UserValidation();
             $userValidation->check($datas);
-            return $userValidation->errorType();
+            return $userValidation->errorField();
         }
 
         if ($name === 'mail') {
             $mailValidation = new MailValidation();
             $mailValidation->check($datas);
-            return $mailValidation->errorType;
+            return $mailValidation->errorField;
         }
     }
 }

@@ -9,6 +9,8 @@ use App\src\DAO\CommentDAO;
 use App\src\DAO\UserDAO;
 use App\src\constraint\Validation;
 use App\config\Response;
+use Twig\Loader\FilesystemLoader;
+use Twig\Environment;
 
 abstract class MainController
 {
@@ -23,6 +25,7 @@ abstract class MainController
     protected $session;
     protected $cookie;
     protected $response;
+    protected  $twig;
 
     public function __construct()
     {
@@ -37,6 +40,14 @@ abstract class MainController
         $this->session = $this->request->getSession();
         $this->cookie = $this->request->getCookie();
         $this->response = new Response();
+    }
+
+    protected function getTwig($page,$vars=[])
+    {
+        $loader = new FilesystemLoader(__DIR__.'/../../templates');
+        $this->twig = new Environment($loader, array('cache' => false));/*TODO: change cache true*/
+        $this->twig->addGlobal('session',$this->session);
+        echo $this->twig->render($page,$vars);
     }
 
 

@@ -28,9 +28,6 @@ class ArticleDAO extends DAO
 
         foreach ($result as $article)
         {
-
-            $article['date_creation']= $this->dateFormat($article['date_creation']);
-            $article['date_modif'] = $this->dateFormat($article['date_modif']);
             $posts[]=$this->buildObject($article);
         }
 

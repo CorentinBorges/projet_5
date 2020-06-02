@@ -9,7 +9,7 @@
                 <div class="site-heading">
                     <h2>{{post.title}}</h2>
                     <p>{{post.chapo}}</p>
-                    <p>Auteur: {{post.author}} <i>Ecrit le: {{post.dateCreation}} {% if post.dateModif is not null %} Modifié le {{ post.dateModif }} {% endif %}</i></p>
+                    <p>Auteur: {{post.author}} <i>Ecrit le: {{post.dateCreation|date('m/d/Y')}} {% if post.dateModif is not null %} Modifié le {{ post.dateModif|date('m/d/Y') }} {% endif %}</i></p>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
     </article>
 
 
-    {% if pseudo is defined %}
+    {% if session.get('pseudo') %}
         <hr>
         <div class="flex-column mx-auto text-center">
             <form method='post' action='/projet_5/public/index.php?route=post&postId={{post.id}}'>
@@ -43,7 +43,7 @@
         </div>
     {% endif %}
 
-    {% if commentSent is defined %}
+    {% if session.get('commentSent') %}
         <div class="modal box-comment-bg fade show pt-5  " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false" style="">
             <div class="modal-dialog" role="document">
                 <div class="modal-content confirm-comment">
@@ -53,13 +53,13 @@
                     </button>
 
                     <div class="modal-body ">
-                        <p>Votre commentaire à été envoyé, il est en attente de validation</p>
+                        <p>{{ session.show('commentSent') }}</p>
                     </div>
                 </div>
             </div>
         </div>
     {% endif %}
-    {% if errors is defined %}
+    {% if session.get('errors') %}
         <div class="modal box-comment-bg fade show pt-5  " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false" style="display: block; padding-right: 19px;">
             <div class="modal-dialog" role="document">
                 <div class="modal-content error-comment">
@@ -69,9 +69,10 @@
                     </button>
 
                     <div class="modal-body ml-3">
-                        {% for error in errors %}
+                        {% for error in session.get('errors')%}
                             <li>{{ error }}</li>
                         {% endfor %}
+                        {{ session.remove('errors') }}
                     </div>
                 </div>
             </div>
@@ -84,7 +85,7 @@
             <p class="mb-2">Commentaires:</p>
             {%  for comment in comments %}
                 <div class="border border-dark container">
-                    <p>{{comment.author}} <i>{{comment.date}}</i> </p>
+                    <p>{{comment.author}} <i>{{ comment.date|date('m/d/Y') }}</i> </p>
                     <p>{{comment.content}}</p>
                 </div>
             {% endfor %}

@@ -45,7 +45,7 @@ $("body").click(function(event) {
     $('.box-comment-bg').hide()
 });
 
-x=0;
+
 
 
 /*==========General=========*/
@@ -64,6 +64,7 @@ $('#top-btn').click(function () {
 })
 
 /*=========Forms=========*/
+x=0;
 while( x<6){
 
     $("."+x+".text-danger").click(function() {

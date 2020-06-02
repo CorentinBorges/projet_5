@@ -41,9 +41,6 @@ class Router
                 $session->set('admin','admin');
             }
         }
-        if ($this->request->getSession()->get('pseudo')) {
-            $this->frontController->connect();
-        }
 
         try {
 
