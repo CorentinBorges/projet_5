@@ -16,7 +16,7 @@ you have a tuto at the end of this read me [How to use mailtrap](#how-to-use-mai
 8. Write 'localhost/projet_5/public' in the address bar of your favorite browser and press enter
 
 ###Installing Composer
-#####Windows installation
+####Windows installation
 1. Click  [here](https://getcomposer.org/Composer-Setup.exe) to download Composer-Setup.exe
 2. double-click on the downloaded file
 3. Click next and accept the default configuration
@@ -30,7 +30,8 @@ Congratulation, composer is installed!!
 
 #####Mac or Linux installation
 With Mac or Linux you can install composer [locally](#local-installation) or [globally](#global-installation)
-######Local installation
+
+#####Local installation
 1. Open your terminal in the 'project_5' folder, and type those lines to install composers files in this folder
     ```
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
