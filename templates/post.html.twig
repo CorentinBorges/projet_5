@@ -9,7 +9,7 @@
                 <div class="site-heading">
                     <h2>{{post.title}}</h2>
                     <p>{{post.chapo}}</p>
-                    <p>Auteur: {{post.author}} <i>Ecrit le: {{post.dateCreation|date('m/d/Y')}} {% if post.dateModif is not null %} Modifié le {{ post.dateModif|date('m/d/Y') }} {% endif %}</i></p>
+                    <p>Auteur: {{post.author}} <i>Ecrit le: {{post.dateCreation|date('d/m/Y')}} {% if post.dateModif is not null %} Modifié le {{ post.dateModif|date('d/m/Y') }} {% endif %}</i></p>
                 </div>
             </div>
         </div>
@@ -69,10 +69,9 @@
                     </button>
 
                     <div class="modal-body ml-3">
-                        {% for error in session.get('errors')%}
+                        {% for error in session.show('errors')%}
                             <li>{{ error }}</li>
                         {% endfor %}
-                        {{ session.remove('errors') }}
                     </div>
                 </div>
             </div>
@@ -85,7 +84,7 @@
             <p class="mb-2">Commentaires:</p>
             {%  for comment in comments %}
                 <div class="border border-dark container">
-                    <p>{{comment.author}} <i>{{ comment.date|date('m/d/Y') }}</i> </p>
+                    <p>{{comment.author}} <i>{{ comment.date|date('d/m/Y') }}</i> </p>
                     <p>{{comment.content}}</p>
                 </div>
             {% endfor %}

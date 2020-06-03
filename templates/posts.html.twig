@@ -33,7 +33,7 @@
                                 {{ post.chapo }}
                             </h3>
                         </a>
-                        <p class="post-meta">Ecrit par {{ post.author }} le {{ post.dateCreation|date('m/d/Y')}} {% if post.dateModif is not null %} Modifié le {{ post.dateModif|date('m/d/Y') }} {% endif %}</p>
+                        <p class="post-meta">Ecrit par {{ post.author }} le {{ post.dateCreation|date('d/m/Y')}} {% if post.dateModif is not null %} Modifié le {{ post.dateModif|date('d/m/Y') }} {% endif %}</p>
                     </div>
                     <hr>
                 {% endfor %}

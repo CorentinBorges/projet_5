@@ -14,7 +14,6 @@ use Twig\Environment;
 
 abstract class MainController
 {
-    protected $view;
     protected $articleDAO;
     protected $commentDAO;
     protected $userDAO;
@@ -29,7 +28,6 @@ abstract class MainController
 
     public function __construct()
     {
-        $this->view = new View();
         $this->articleDAO = new ArticleDAO();
         $this->commentDAO = new CommentDAO();
         $this->userDAO = new UserDAO();
