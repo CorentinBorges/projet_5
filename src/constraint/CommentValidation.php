@@ -3,10 +3,11 @@
 
 namespace App\src\constraint;
 
+use \App\config\Parameter;
 
 class CommentValidation extends Validation
 {
-    public function check(\App\config\Parameter $post)
+    public function check(Parameter $post)
     {
         if ($this->constraint->notBlanck($post->get('comment'))) {
             $this->addError($this->constraint->notBlanck($post->get('comment'), 'commentaire'));

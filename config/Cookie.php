@@ -16,6 +16,7 @@ class Cookie
         if (isset($_COOKIE[$name])) {
             return $_COOKIE[$name];
         }
+        return null;
     }
 
     public function remove($name)
@@ -23,11 +24,4 @@ class Cookie
         setcookie($name, '', time() - 4200, null, null, false, true);
     }
 
-    public function removeAll()
-    {
-        foreach ($_COOKIE as $item) {
-            setcookie($item, '', time() - 4200, null, null, false, true);/**/
-            unset($_COOKIE[$item]);
-        }
-    }
 }

@@ -19,12 +19,12 @@
         <h2 class="text-center">Inscription</h2>
 
         <div id="CGU-container" class='CGU' style="display: none">
-            <object type="application/pdf" id='CV' data="Web/docs/CGU.pdf" ></object>
+            <object type="application/pdf" id='CV' data="../public/docs/CGU.pdf" ></object>
         </div>
-        <form name="sentMessage" id="contactForm" method='post' action="/projet_5/public/index.php?route=signIn">
+        <form name="sentMessage" id="contactForm" method='post' action="../public/index.php?route=signIn">
             <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
-                    <label>Nom</label>
+                    <label for="name">Nom</label>
                     <input type="text" name="name"
                         {% if session.get('name') %}
                             value='{{ session.show('name') }}'
@@ -34,13 +34,13 @@
                                 class="form-control 1"
                             {% endif %}
                         {% endif %}
-                        placeholder="Nom" id="name" >
+                        placeholder="Nom" id="name" required>
                     <p></p>
                 </div>
             </div>
             <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
-                    <label>Prénom</label>
+                    <label for="firstName">Prénom</label>
                     <input type="text" name='firstName'
                     {% if session.get('firstName') %}
                         value='{{ session.show('firstName') }}'
@@ -50,13 +50,13 @@
                             class="form-control 2"
                         {% endif %}
                     {% endif %}
-                    placeholder="Prénom" id="firstName">
+                    placeholder="Prénom" id="firstName" required>
                     <p></p>
                 </div>
             </div>
             <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
-                    <label>Nom d'utilisateur</label>
+                    <label for="pseudo">Nom d'utilisateur</label>
                     <input type="text" name="pseudo"
                     {% if session.get('alias') %}
                         value='{{ session.show('alias') }}'
@@ -66,14 +66,14 @@
                             class="form-control 3"
                         {% endif %}
                     {% endif %}
-                    placeholder="Nom d'utilisateur" id="pseudo" >
+                    placeholder="Nom d'utilisateur" id="pseudo" required>
                     <p></p>
                 </div>
             </div>
             <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
-                    <label>Mail</label>
-                    <input type="email" name="mail"
+                    <label for="mail">Mail</label>
+                    <input type="email" name="mail" id="mail"
                     {% if session.get('mail') %}
                         value='{{ session.show('mail') }}'
                             {% if session.get('invalidMail') %}
@@ -82,13 +82,13 @@
                                 class="form-control 4"
                             {% endif %}
                     {% endif %}
-                     placeholder="Mail" id="email" >
+                     placeholder="Mail" id="email" required>
                     <p></p>
                 </div>
             </div>
             <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
-                    <label>Mot de passe</label>
+                    <label for="pass">Mot de passe</label>
                     <input type="password" name='pass'
                     {% if session.get('pass') %}
                         value='{{ session.show('pass') }}'
@@ -98,14 +98,14 @@
                                class="form-control 5"
                             {% endif %}
                     {% endif %}
-                    placeholder="Mot de passe" id="pass">
+                    placeholder="Mot de passe" id="pass" required>
                     <p></p>
                 </div>
                 <small class="help-block text-secondary">Le mot de passe doit comporter au moins 8 caractères, au moins une majuscule, une minuscule, un signe de ponctuation et un chiffre. </small>
             </div>
             <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
-                    <label>Confirmation du mot de passe</label>
+                    <label for="confirmPass">Confirmation du mot de passe</label>
                     <input type="password" name='confirmPass'
                     {% if session.get('confirmPass') %}
                            value='{{ session.show('confirmPass') }}'
@@ -115,7 +115,7 @@
                                 class="form-control 6"
                             {% endif %}
                     {% endif %}
-                    placeholder="Confirmation du mot de passe" id="confirmPass">
+                    placeholder="Confirmation du mot de passe" id="confirmPass" required>
                     <p class="help-block text-danger"></p>
                 </div>
             </div>

@@ -2,11 +2,11 @@
 
 
 namespace App\src\constraint;
-use App\src\constraint\Constraint;
+use \App\config\Parameter;
 
 class MailValidation extends Validation
 {
-    public function check(\App\config\Parameter $post)
+    public function check(Parameter $post)
     {
         foreach ($post->all() as $name=>$data) {
             $this->checkField($name, $data);

@@ -52,6 +52,7 @@ class ArticleDAO extends DAO
         if ($count) {
             return true;
         }
+        return null;
     }
 
     public function addArticle(Parameter $post,Session $Session)

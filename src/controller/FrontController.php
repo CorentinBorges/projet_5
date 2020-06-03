@@ -2,8 +2,6 @@
 
 namespace App\src\controller;
 
-use App\src\DAO\ArticleDAO;
-use App\src\DAO\CommentDAO;
 use App\config\Parameter;
 use App\config\Mail;
 
@@ -77,7 +75,7 @@ class FrontController extends MainController
             $this->getTwig('post.html.twig',['comments'=>$comments,'post'=>$post]);
         }
         else {
-           $this->response->redirect('/projet_5/public/index.php?route=404');
+           $this->response->redirect('../public/index.php?route=404');
         }
 
 
@@ -124,7 +122,7 @@ class FrontController extends MainController
             $this->session->set('confirmPass',$post->get('confirmPass'));
             if (empty($errors)) {
                 $this->userDAO->register($post);
-                $this->response->redirect('/projet_5/public/index.php?route=validSignIn');
+                $this->response->redirect('../public/index.php?route=validSignIn');
             }
         }
 
@@ -155,7 +153,7 @@ class FrontController extends MainController
                         $this->cookie->set('admin','admin');
                     }
                 }
-                $this->response->redirect('/projet_5/public/index.php');
+                $this->response->redirect('../public/index.php');
             }
             elseif ($checkUser && $checkUser['valid'] === 0) {
                 $this->session->set('error', "Votre compte n'a pas encore été validé");
@@ -168,17 +166,6 @@ class FrontController extends MainController
         }
         $this->getTwig('login.html.twig');
     }
-
-
-/*    public function connect()
-    {
-        if ($this->session->get('pseudo')) {
-            $this->session->set('pseudo',$this->session->get('pseudo'));
-        }
-        if ($this->session->get('admin')) {
-            $this->view->addVar('admin','admin');
-        }
-    }*/
 
 
 

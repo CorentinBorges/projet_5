@@ -2,17 +2,17 @@
 {% block content %}
     <div class="col-12 mt-3 text-center pl-md-5 pl-sm-2 col-sm-6 mx-auto">
         <h2>Commentaires non validés</h2>
-        <a href="/projet_5/public/index.php?route=validCom" class="text-primary">Voir les commentaires validés</a>
+        <a href="../public/index.php?route=validCom" class="text-primary">Voir les commentaires validés</a>
     </div>
 
     <div class="container mt-5">
-        <form class=" mx-auto col-lg-8" method="post" action="/projet_5/public/index.php?route=noValidComments">
+        <form class=" mx-auto col-lg-8" method="post" action="../public/index.php?route=noValidComments">
             {% for comment in comments %}
                 <div class="form-group container checkComBox row">
                     <input class='checkValid' type="checkbox" id="box-{{ comment.id }}" name="com-{{ comment.id }}" value="{{ comment.id }}"/>
                     <label for="box-{{ comment.id }}" class="ml-2 col-8">
-                        <p>{{ comment.author }} <span class="font-italic">{{ comment.date|date('d/m/Y') }}</span></p>
-                        <p>{{ comment.content }}</p>
+                        <span class="font-weight-bold"> {{ comment.author }}</span>  <span class="font-italic">{{ comment.date|date('d/m/Y') }}</span><br/>
+                        {{ comment.content }}
                     </label>
                 </div>
             {% endfor %}

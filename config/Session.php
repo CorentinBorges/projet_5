@@ -19,6 +19,7 @@ class Session
 
             return $_SESSION[$data];
         }
+        return null;
     }
 
     public function set($data,$value)
@@ -33,6 +34,7 @@ class Session
             $this->remove($key);
             return $message;
         }
+        return null;
     }
 
     public function remove($data)

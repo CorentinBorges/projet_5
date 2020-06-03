@@ -1,7 +1,6 @@
 <?php
 
 namespace App\src\DAO;
-use App\config\Parameter;
 use App\src\model\Comment;
 
 class CommentDAO extends DAO

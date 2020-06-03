@@ -23,35 +23,36 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto mt-3">
+
+                <form method="post"
                 {% if addPost is defined %}
-                    <form method="post" action="/projet_5/public/index.php?route=addPost">
+                      action="../public/index.php?route=addPost"
+                {% elseif editPost is defined %}
+                    action="../public/index.php?route=editPost&postId={{ session.get('id') }}"
+                {% endif %}>
+                <div class="form-group">
+                    <label for="title">Titre</label>
+                    <textarea class="form-control" rows="1"  maxlength="150" id="title" type="textarea" name="title" required>{% if session.get('title') %} {{ session.show('title') }} {% endif %}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="chapo">Chapô</label>
+                    <textarea class="form-control" rows="01" maxlength="150" id="chapo" name="chapo" required>{% if session.get('chapo') %} {{ session.show('chapo') }} {% endif %}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="content">Article</label>
+                    <textarea class="form-control" rows="9" maxlength="30000" id="content" name="content" required>{% if session.get('content') %} {{ session.show('content') }} {% endif %}</textarea>
+                </div>
+                {% if addPost is defined %}
+                    <div class="form-group text-center">
+                        <input type="submit" name="submitPost" class="btn btn-primary" value="Envoyer"/>
+                    </div>
                 {% endif %}
                 {% if editPost is defined %}
-                    <form method="post" action="/projet_5/public/index.php?route=editPost&postId={{ session.get('id') }}">
+                    <div class="form-group text-center">
+                        <input type="submit" name="editPost" class="btn btn-primary" value="Modifier"/>
+                    </div>
                 {% endif %}
-                    <div class="form-group">
-                        <label for="title">Titre</label>
-                        <textarea class="form-control" rows="1"  maxlength="150" id="title" type="textarea" name="title" {#required#}>{% if session.get('title') %} {{ session.show('title') }} {% endif %}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="chapo">Chapô</label>
-                        <textarea class="form-control" rows="01" maxlength="150" id="chapo" name="chapo" {#required#}>{% if session.get('chapo') %} {{ session.show('chapo') }} {% endif %}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="content">Article</label>
-                        <textarea class="form-control" rows="9" maxlength="30000" id="content" name="content" {#required#}>{% if session.get('content') %} {{ session.show('content') }} {% endif %}</textarea>
-                    </div>
-                    {% if addPost is defined %}
-                        <div class="form-group text-center">
-                            <input type="submit" name="submitPost" class="btn btn-primary" value="Envoyer"/>
-                        </div>
-                    {% endif %}
-                    {% if editPost is defined %}
-                        <div class="form-group text-center">
-                            <input type="submit" name="editPost" class="btn btn-primary" value="Modifier"/>
-                        </div>
-                    {% endif %}
-                </form>
+            </form>
             </div>
         </div>
     </div>

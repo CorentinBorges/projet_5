@@ -2,7 +2,6 @@
 
 
 namespace App\src\controller;
-use \App\src\model\View;
 use App\config\Request;
 use App\src\DAO\ArticleDAO;
 use App\src\DAO\CommentDAO;

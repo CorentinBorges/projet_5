@@ -2,11 +2,11 @@
 {% block content %}
     <div class="col-12 mt-3 text-center pl-md-5 pl-sm-2 col-sm-6 mx-auto">
         <h2>Utilisateurs non validés</h2>
-        <a href="/projet_5/public/index.php?route=validUsers" class="text-primary">Voir les utilisateurs validés</a>
+        <a href="../public/index.php?route=validUsers" class="text-primary">Voir les utilisateurs validés</a>
     </div>
 
     <div class="container mt-5">
-    <form class=" mx-auto col-lg-8" method="post" action="/projet_5/public/index.php?route=users">
+    <form class=" mx-auto col-lg-8" method="post" action="../public/index.php?route=users">
         {% for user in users %}
             <div class="form-group container checkComBox row">
                 <input class='checkValid' type="checkbox" id="box-{{ user.id }}" name="com-{{ user.id }}" value="{{ user.id }}"/>

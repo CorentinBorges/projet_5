@@ -11,18 +11,18 @@
     {% endif %}
     <div class="col-lg-6 pl-sm-5 col-md-10 mx-auto">
         <h2 class="text-center">Connexion</h2>
-        <form name="connexion" id="contactForm" method='post' action="/projet_5/public/index.php?route=login">
+        <form name="connexion" id="contactForm" method='post' action="../public/index.php?route=login">
             <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
-                    <label>Nom d'utilisateur</label>
-                    <input type="text" class="form-control" {% if session.get('alias') %} value='{{session.show('alias')}}' {% endif %} name='pseudo' placeholder="Nom d'utilisateur" id="pseudo" required data-validation-required-message="veuillez entrer un nom d'utilisateur">
+                    <label for="pseudo">Nom d'utilisateur</label>
+                    <input type="text" class="form-control" {% if session.get('alias') %} value='{{session.show('alias')}}' {% endif %} name='pseudo' placeholder="Nom d'utilisateur" id="pseudo" required>
                     <p class="help-block text-danger"></p>
                 </div>
             </div>
             <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
-                    <label>Mot de passe</label>
-                    <input type="password" class="form-control" name='pass' {% if session.get('pass') %} value='{{session.show('pass')}}' {% endif %} placeholder="Mot de passe" id="pass" required data-validation-required-message="Veuillez indiquer un mot de passe">
+                    <label for="pass">Mot de passe</label>
+                    <input type="password" class="form-control" name='pass' {% if session.get('pass') %} value='{{session.show('pass')}}' {% endif %} placeholder="Mot de passe" id="pass" required>
                     <p class="help-block text-danger"></p>
                 </div>
             </div>

@@ -15,7 +15,7 @@ class BackController extends MainController
         $this->session->stop();
         $this->cookie->remove('pseudo');
         $this->cookie->remove('id');
-        $this->response->redirect('/projet_5/public/');
+        $this->response->redirect('../public/');
     }
 
     public function adminHome()
@@ -30,7 +30,7 @@ class BackController extends MainController
         if ($post->get('delete')) {
             $this->commentDAO->delComments($get->get('postId'));
             $this->articleDAO->deleteArticle($get->get('postId'));
-            $this->response->redirect('/projet_5/public/index.php?route=adminPosts');
+            $this->response->redirect('../public/index.php?route=adminPosts');
         }
         $posts = $this->articleDAO->getArticles();
         $this->getTwig('adminPosts.html.twig',['list'=>$posts]);
@@ -45,7 +45,7 @@ class BackController extends MainController
             }
             else {
                 $this->articleDAO->addArticle($post, $this->session);
-                $this->response->redirect('/projet_5/public/index.php?route=adminPosts');
+                $this->response->redirect('../public/index.php?route=adminPosts');
             }
         }
         $this->getTwig('postForm.html.twig',['addPost'=>'addPost']);
@@ -60,7 +60,7 @@ class BackController extends MainController
             }
             else {
                 $this->articleDAO->updateArticle($post,$get);
-                $this->response->redirect('/projet_5/public/index.php?route=adminPosts');
+                $this->response->redirect('../public/index.php?route=adminPosts');
             }
         }
         $article=$this->articleDAO->getArticle($get->get('postId'));

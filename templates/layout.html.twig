@@ -10,15 +10,12 @@
 
     <title>Corentin Borges</title>
 
-    <base href="/projet_5/"/>
     <!-- Bootstrap core CSS -->
-    <link href="public/css/bootstrap.min.css" rel="stylesheet">
-    {#  font for icons  #}
-    <link href="public/css/fontawsome.css" rel="stylesheet" type="text/css">
+    <link href="../public/css/bootstrap.min.css" rel="stylesheet">
     {#  load fonts  #}
-    <link href="public/css/fonts/fonts.css" rel="stylesheet" type="text/css">
+    <link href="../public/css/fonts/fonts.css" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template -->
-    <link href="public/css/clean-blog.css" rel="stylesheet">
+    <link href="../public/css/clean-blog.css" rel="stylesheet">
 
 </head>
 <body>
@@ -28,8 +25,8 @@
 {% if session.get('pseudo') %}
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <img id='nav-pic' src='public/pictures/profil.png' alt='Corentin borges'/>
-        <a class="navbar-brand " href="/projet_5/public/">Corentin Borges</a>
+        <img id='nav-pic' src='../public/pictures/profil.png' alt='Corentin borges'/>
+        <a class="navbar-brand " href="../public/">Corentin Borges</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
@@ -37,15 +34,15 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/projet_5/public/">Acceuil</a>
+                    <a class="nav-link" href="../public/index.php">Acceuil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/projet_5/public/index.php?route=posts">Posts</a>
+                    <a class="nav-link" href="../public/index.php?route=posts">Posts</a>
                 </li>
-                <div class="nav-devider-connect d-none d-lg-block mt-1"></div>
+                <span class="nav-devider-connect d-none d-lg-block mt-1"></span>
                 <li class="nav-item ">
                     <span id='pseudo-nav' class='d-none d-lg-block ml-3'>{{session.get('pseudo')}}</span>
-                    <a class="nav-link" id='disconnect' href="/projet_5/public/index.php?route=disconnect">Déconnexion</a>
+                    <a class="nav-link" id='disconnect' href="../public/index.php?route=disconnect">Déconnexion</a>
                 </li>
             </ul>
         </div>
@@ -54,8 +51,8 @@
 {% else %}
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <img id='nav-pic' src='public\pictures\profil.png' alt='Corentin borges'/>
-        <a class="navbar-brand " href="/projet_5/public/">Corentin Borges</a>
+        <img id='nav-pic' src='../public/pictures/profil.png' alt='Corentin borges'/>
+        <a class="navbar-brand " href="../public/">Corentin Borges</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
@@ -63,17 +60,17 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/projet_5/public/">Acceuil</a>
+                    <a class="nav-link" href="../public/">Acceuil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/projet_5/public/index.php?route=posts">Posts</a>
+                    <a class="nav-link" href="../public/index.php?route=posts">Posts</a>
                 </li>
                 <div class="nav-devider mt-1"></div>
                 <li class="nav-item">
-                    <a class="nav-link" href="/projet_5/public/index.php?route=login">Connexion</a>
+                    <a class="nav-link" href="../public/index.php?route=login">Connexion</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/projet_5/public/index.php?route=signIn">s'enregistrer</a>
+                    <a class="nav-link" href="../public/index.php?route=signIn">s'enregistrer</a>
                 </li>
             </ul>
         </div>
@@ -91,7 +88,7 @@
 {{ block ('content')}}
 
 <div class='CGU CGU-container'>
-    <object type="application/pdf" id='CV' data="/projet_5/public/docs/CGU.pdf" ></object>
+    <object type="application/pdf" id='CV' data="../public/docs/CGU.pdf" ></object>
 </div>
 <hr class="mt-5">
 <footer>
@@ -100,10 +97,10 @@
             <ul class="col-lg-4 plan d-none d-lg-block col-md-3 ">
                 <p>Plan du site:</p>
                 <li class="nav-item">
-                    <a class="nav-link" href="/projet_5/public/">Acceuil</a>
+                    <a class="nav-link" href="../public/">Acceuil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/projet_5/public/index.php?route=posts">Posts</a>
+                    <a class="nav-link" href="../public/index.php?route=posts">Posts</a>
                 </li>
                 <button class="nav-link CGU-btn">Conditions générales d'utilisation</button>
             </ul>
@@ -139,27 +136,26 @@
             <ul class="plan d-lg-none text-center mt-3 d-block col-lg-3 ">
                 <p>Plan du site:</p>
                 <li class="nav-item list-group-item">
-                    <a class="nav-link" href="/projet_5/public/">Acceuil</a>
+                    <a class="nav-link" href="../public/">Acceuil</a>
                 </li>
                 <li class="nav-item list-group-item">
-                    <a class="nav-link" href="/projet_5/public/index.php?route=posts">Posts</a>
+                    <a class="nav-link" href="../public/index.php?route=posts">Posts</a>
                 </li>
                 <button class="nav-link CGU-btn">Conditions générales d'utilisation </button>
             </ul>
             <div class='col-lg-3 mx-auto text-center mt-5'>
                 {% if session.get('admin') %}
-                <a href="/Projet_5/public/index.php?route=adminHome" class='config-link'>Configurer le site</a>
+                <a href="../public/index.php?route=adminHome" class='config-link'>Configurer le site</a>
                 {% endif %}
             </div>
         </div>
     </div>
 </footer>
 
-{#<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="crossorigin="anonymous"></script>#}
-<script src="public/js/jquery3.5.1.js"></script>
-<script src="public/js/bootstrap.bundle.min.js"></script>
-<script src="public/js/all.min.js"></script>
-<script src="public/js/clean-blog.js"></script>
+<script src="../public/js/jquery3.5.1.js"></script>
+<script src="../public/js/bootstrap.bundle.min.js"></script>
+<script src="../public/js/all.min.js"></script>
+<script src="../public/js/clean-blog.js"></script>
 
 </body>
 

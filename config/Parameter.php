@@ -19,6 +19,7 @@ class Parameter
         {
             return $this->parameter[$name];
         }
+        return null;
     }
 
     public function set($name,$value)

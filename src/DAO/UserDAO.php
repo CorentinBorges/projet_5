@@ -3,7 +3,6 @@
 
 namespace App\src\DAO;
 
-use App\src\DAO\DAO;
 use App\src\model\User;
 use App\config\Parameter;
 
@@ -50,6 +49,7 @@ class UserDAO extends DAO
         if ($count) {
             return "Ce pseudo est déjà utilisé";
         }
+        return null;
     }
 
     public function mailExist(Parameter $post)
@@ -60,6 +60,7 @@ class UserDAO extends DAO
         if ($count) {
             return "Cette adresse mail est déjà utilisé";
         }
+        return null;
     }
 
     public function login(Parameter $post)
@@ -72,6 +73,7 @@ class UserDAO extends DAO
             $admin = (int)$datas['role_id']===1;
             return ['pass'=>$checkPass, 'id'=>$datas['id'], 'admin'=>$admin,'valid'=>(int)$datas['valid']];
         }
+        return null;
     }
 
     public function delOne($id)

@@ -3,6 +3,8 @@
 
 namespace App\src\constraint;
 
+use App\config\Parameter;
+
 class Validation
 {
     protected $errors;
@@ -50,6 +52,8 @@ class Validation
             $errors = $postValidation->check($data);
             return $errors;
         }
+
+        return null;
     }
 
     public function errorField()
@@ -58,9 +62,10 @@ class Validation
         {
             return $this->errorField;
         }
+        return null;
     }
 
-    public function getErrorField(\App\config\Parameter $datas,$name)
+    public function getErrorField(Parameter $datas,$name)
     {
         if ($name==='user') {
             $userValidation = new UserValidation();
@@ -73,5 +78,6 @@ class Validation
             $mailValidation->check($datas);
             return $mailValidation->errorField;
         }
+        return null;
     }
 }

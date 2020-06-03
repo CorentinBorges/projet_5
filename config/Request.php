@@ -2,7 +2,6 @@
 
 
 namespace App\config;
-use App\config\Parameters;
 
 
 class Request

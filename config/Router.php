@@ -7,7 +7,7 @@ namespace App\config;
 use \App\src\controller\FrontController;
 use \App\src\controller\ErrorController;
 use App\src\controller\BackController;
-
+use \Exception;
 
 class Router
 {
@@ -141,7 +141,7 @@ class Router
                 $this->frontController->home($post);
             }
      }
-        catch (\Exception $e) {
+        catch (Exception $e) {
 
             $this->errorControlller->errorServer();
         }

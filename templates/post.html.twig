@@ -2,7 +2,7 @@
 
 {% block jumbotron %}
 
-    <header class="masthead postsPic"   alt='Machine à écrire' id="postPic">
+    <header class="masthead postsPic"  id="postPic">
         <div class="overlay"></div>
         <div class="container">
             <div class="col-lg-8 col-md-10 mx-auto">
@@ -33,7 +33,7 @@
     {% if session.get('pseudo') %}
         <hr>
         <div class="flex-column mx-auto text-center">
-            <form method='post' action='/projet_5/public/index.php?route=post&postId={{post.id}}'>
+            <form method='post' action='../public/index.php?route=post&postId={{post.id}}'>
                 <label for='comment' id="comment-label" >Commentaire:<br/></label>
                 <textarea  maxlength="250" name="comment" id='comment' required></textarea>
                 <div class="form-group col-5 col-md-12 mt-3 mx-auto" >
@@ -63,11 +63,9 @@
         <div class="modal box-comment-bg fade show pt-5  " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false" style="display: block; padding-right: 19px;">
             <div class="modal-dialog" role="document">
                 <div class="modal-content error-comment">
-
                     <button type="button" class="close text-right mr-3" id='confirm-cross-btn' data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" class='confirm-cross w-100'>&times;</span>
                     </button>
-
                     <div class="modal-body ml-3">
                         {% for error in session.show('errors')%}
                             <li>{{ error }}</li>
