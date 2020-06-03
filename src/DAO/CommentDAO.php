@@ -26,7 +26,6 @@ class CommentDAO extends DAO
         $comments = [];
         if ($result) {
             foreach ($result as $comment){
-                $comment['date'] = $this->dateFormat($comment['date']);
                 $comments[]=$this->buildObject($comment);
             }
         }
@@ -49,7 +48,6 @@ class CommentDAO extends DAO
         $result = $this->createQuery($req, [1])->fetchAll();
         $comments = [];
         foreach ($result as $comment) {
-            $comment['date'] = $this->dateFormat($comment['date']);
             $comments[] = $this->buildObject($comment);
         }
         return $comments;
@@ -63,7 +61,6 @@ class CommentDAO extends DAO
         $result = $this->createQuery($req, [0])->fetchAll();
         $comments = [];
         foreach ($result as $comment) {
-            $comment['date'] = $this->dateFormat($comment['date']);
             $comments[] = $this->buildObject($comment);
         }
         return $comments;

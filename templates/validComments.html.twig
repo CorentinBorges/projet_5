@@ -11,7 +11,7 @@
                 <div class="form-group container checkComBox row">
                     <input type="checkbox" id="box-{{ comment.id }}" name="com-{{ comment.id }}" value="{{ comment.id }}"/>
                     <label for="box-{{ comment.id }}" class="ml-2 col-8">
-                        <p>{{ comment.author }} <span class="font-italic">{{ comment.date }}</span></p>
+                        <p>{{ comment.author }} <span class="font-italic">{{ comment.date|date('d/m/Y') }}</span></p>
                         <p>{{ comment.content }}</p>
                     </label>
                 </div>
@@ -45,7 +45,7 @@
         </form>
     </div>
 
-    {% if commentDel is defined %}
+    {% if session.get('commentDel')%}
         <div class="modal box-comment-bg fade show pt-5  " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false" style="">
             <div class="modal-dialog" role="document">
                 <div class="modal-content confirm-comment">
@@ -55,7 +55,7 @@
                     </button>
 
                     <div class="modal-body text-center">
-                        <p>Les commentaires ont été supprimés</p>
+                        <p>{{ session.show('commentDel') }}</p>
                     </div>
                 </div>
             </div>

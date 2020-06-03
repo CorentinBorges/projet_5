@@ -22,22 +22,18 @@ class BackController extends MainController
     {
         $nbComNoValid=$this->commentDAO->nonValidCount();
         $nbUserNoValid = $this->userDAO->nonValidCount();
-        $this->view->addVar('countCom',$nbComNoValid);
-        $this->view->addVar('countLog',$nbUserNoValid);
-        $this->view->render('adminHome.html.twig');
+        $this->getTwig('adminHome.html.twig',['countCom'=>$nbComNoValid,'countLog'=>$nbUserNoValid]);
     }
 
     public function posts(Parameter $post,Parameter $get)
     {
         if ($post->get('delete')) {
             $this->commentDAO->delComments($get->get('postId'));
-
             $this->articleDAO->deleteArticle($get->get('postId'));
             $this->response->redirect('/projet_5/public/index.php?route=adminPosts');
         }
         $posts = $this->articleDAO->getArticles();
-        $this->view->addVar('list',$posts);
-        $this->view->render('adminPosts.html.twig');
+        $this->getTwig('adminPosts.html.twig',['list'=>$posts]);
     }
 
     public function addPost(Parameter $post)
@@ -45,15 +41,14 @@ class BackController extends MainController
         if ($post->get('submitPost')) {
             $errors = $this->validation->Validate($post, 'article');
             if ($errors) {
-                $this->view->addVar('errors',$errors);
+                $this->session->set('errors',$errors);
             }
             else {
                 $this->articleDAO->addArticle($post, $this->session);
                 $this->response->redirect('/projet_5/public/index.php?route=adminPosts');
             }
         }
-        $this->view->addVar('addPost','addPost');
-        $this->view->render('postForm.html.twig');
+        $this->getTwig('postForm.html.twig',['addPost'=>'addPost']);
     }
 
     public function editPost(Parameter $post,Parameter $get)
@@ -61,7 +56,7 @@ class BackController extends MainController
         if ($post->get('editPost')) {
             $errors = $this->validation->Validate($post, 'article');
             if ($errors) {
-                $this->view->addVar('errors',$errors);
+                $this->session->set('errors',$errors);
             }
             else {
                 $this->articleDAO->updateArticle($post,$get);
@@ -69,12 +64,11 @@ class BackController extends MainController
             }
         }
         $article=$this->articleDAO->getArticle($get->get('postId'));
-        $this->view->addVar('title',$article->getTitle());
-        $this->view->addVar('chapo',$article->getChapo());
-        $this->view->addVar('content',$article->getContent());
-        $this->view->addVar('id',$article->getId());
-        $this->view->addVar('editPost','editPost');
-        $this->view->render('postForm.html.twig');
+        $this->session->set('title',$article->getTitle());
+        $this->session->set('chapo',$article->getChapo());
+        $this->session->set('content',$article->getContent());
+        $this->session->set('id',$article->getId());
+        $this->getTwig('postForm.html.twig',['editPost'=>'editPost']);
     }
 
     public function notValidComments(Parameter $post)
@@ -86,7 +80,7 @@ class BackController extends MainController
                     $this->commentDAO->validOne($match[1]);
                 }
             }
-            $this->view->addVar('commentValid','Comment valid');
+            $this->session->set('commentValid','Les commentaires ont été validés');
         }
 
         elseif ($post->get('delComments')) {
@@ -95,11 +89,10 @@ class BackController extends MainController
                     $this->commentDAO->delOne($match[1]);
                 }
             }
-            $this->view->addVar('commentDel','CommentDel');
+            $this->session->set('commentDel','Les commentaires ont été supprimés');
         }
         $comments=$this->commentDAO->getNonValid();
-        $this->view->addVar('comments',$comments);
-        $this->view->render('noValidComments.html.twig');
+        $this->getTwig('noValidComments.html.twig',['comments'=>$comments]);
     }
 
     public function validComments(Parameter $post)
@@ -110,11 +103,10 @@ class BackController extends MainController
                     $this->commentDAO->delOne($match[1]);
                 }
             }
-            $this->view->addVar('commentDel','CommentDel');
+            $this->session->set('commentDel','Les commentaires ont été supprimés');
         }
         $comments = $this->commentDAO->getValid();
-        $this->view->addVar('comments',$comments);
-        $this->view->render('validComments.html.twig');
+        $this->getTwig('validComments.html.twig',['comments'=>$comments]);
     }
 
     public function users(Parameter $post)
@@ -126,7 +118,7 @@ class BackController extends MainController
                     $this->userDAO->validUser($match[1]);
                 }
             }
-            $this->view->addVar('userValid','userValid');
+            $this->session->set('userValid','Les utilisateurs ont étés validés');
         }
         elseif ($post->get('delUsers')) {
             foreach ($post->all() as $postId => $comId) {
@@ -134,11 +126,10 @@ class BackController extends MainController
                     $this->userDAO->delOne($match[1]);
                 }
             }
-            $this->view->addVar('userDel','userDel');
+            $this->session->set('userDel','Les utilisateurs ont été supprimés');
         }
         $users=$this->userDAO->getNotValid();
-        $this->view->addVar('users',$users);
-        $this->view->render('users.html.twig');
+        $this->getTwig('users.html.twig',['users'=>$users]);
     }
 
     public function validUsers(Parameter $post)
@@ -149,12 +140,10 @@ class BackController extends MainController
                     $this->userDAO->delOne($match[1]);
                 }
             }
-            $this->view->addVar('userDel','userDel');
+            $this->session->set('userDel','Les utilisateurs ont été supprimés');
         }
-
         $users=$this->userDAO->getValid();
-        $this->view->addVar('users',$users);
-        $this->view->render('validUsers.html.twig');
+        $this->getTwig('validUsers.html.twig',['users'=>$users]);
 
     }
 

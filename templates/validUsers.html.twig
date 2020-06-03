@@ -52,7 +52,7 @@
         </form>
     </div>
 
-    {% if userDel is defined %}
+    {% if session.get('userDel') %}
         <div class="modal box-comment-bg fade show pt-5  " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false" style="">
             <div class="modal-dialog" role="document">
                 <div class="modal-content confirm-comment">
@@ -62,7 +62,7 @@
                     </button>
 
                     <div class="modal-body text-center">
-                        <p>Les utilistateurs ont été supprimés</p>
+                        <p>{{ session.show('userDel') }}</p>
                     </div>
                 </div>
             </div>

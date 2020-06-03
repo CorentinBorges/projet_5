@@ -39,12 +39,6 @@ abstract class DAO
         return $query;
     }
 
-    protected function dateFormat($date)
-    {
-        $date = new \DateTime(($date));
-        $newDate = date_format($date, 'j/m/Y');
-        return $newDate;
-    }
 
 
 

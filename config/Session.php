@@ -26,12 +26,12 @@ class Session
         $_SESSION[$data] = $value;
     }
 
-    public function show($data)
+    public function show($key)
     {
-        if (isset($_SESSION[$data])) {
-            $key = $this->get($data);
-            $this->remove($data);
-            return $key;
+        if (isset($_SESSION[$key])) {
+            $message = $this->get($key);
+            $this->remove($key);
+            return $message;
         }
     }
 

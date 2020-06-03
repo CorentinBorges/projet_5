@@ -65,4 +65,3 @@ It must work in any folders.
 * [Composer 1.10.5](https://getcomposer.org/)
 * [Twig 3.0.3](https://twig.symfony.com/)
 * [swiftmailer 6.2](https://swiftmailer.symfony.com/)
-
