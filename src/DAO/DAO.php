@@ -39,9 +39,4 @@ abstract class DAO
         return $this->checkConnexion()->query($req);
     }
 
-
-
-
-
-
 }

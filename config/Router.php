@@ -14,13 +14,13 @@ class Router
 
     private $frontController;
     private $backController;
-    private $errorControlller;
+    private $errorController;
     private $request;
 
     public function __construct()
     {
         $this->backController = new BackController();
-        $this->errorControlller = new ErrorController();
+        $this->errorController = new ErrorController();
         $this->frontController =new FrontController();
         $this->request = new Request();
     }
@@ -72,7 +72,7 @@ class Router
                         $this->backController->adminHome();
                     }
                     else {
-                        $this->errorControlller->errorNotAdmin();
+                        $this->errorController->errorNotAdmin();
                     }
                 }
                 elseif ($route === 'adminPosts') {
@@ -80,7 +80,7 @@ class Router
                         $this->backController->posts($post,$get);
                     }
                     else {
-                        $this->errorControlller->errorNotAdmin();
+                        $this->errorController->errorNotAdmin();
                     }
                 }
                 elseif ($route === 'addPost') {
@@ -88,7 +88,7 @@ class Router
                         $this->backController->addPost($post);
                     }
                     else {
-                        $this->errorControlller->errorNotAdmin();
+                        $this->errorController->errorNotAdmin();
                     }
                 }
 
@@ -97,7 +97,7 @@ class Router
                         $this->backController->editPost($post,$get);
                     }
                     else {
-                        $this->errorControlller->errorNotAdmin();
+                        $this->errorController->errorNotAdmin();
                     }
                 }
                 elseif ($route === 'noValidComments') {
@@ -105,7 +105,7 @@ class Router
                         $this->backController->notValidComments($post);
                     }
                     else {
-                        $this->errorControlller->errorNotAdmin();
+                        $this->errorController->errorNotAdmin();
                     }
                 }
                 elseif ($route === 'validCom') {
@@ -113,27 +113,27 @@ class Router
                         $this->backController->ValidComments($post);
                     }
                     else {
-                        $this->errorControlller->errorNotAdmin();
+                        $this->errorController->errorNotAdmin();
                     }
                 }
                 elseif ($route === 'users') {
                     if ($session->get('admin')) {
                         $this->backController->users($post);
                     } else {
-                        $this->errorControlller->errorNotAdmin();
+                        $this->errorController->errorNotAdmin();
                     }
                 }
                 elseif ($route === 'validUsers') {
                     if ($session->get('admin')) {
                         $this->backController->validUsers($post);
                     } else {
-                        $this->errorControlller->errorNotAdmin();
+                        $this->errorController->errorNotAdmin();
                     }
                 }
 
                 else
                 {
-                    $this->errorControlller->errorNotFound();
+                    $this->errorController->errorNotFound();
                 }
             }
             else {
@@ -143,7 +143,7 @@ class Router
      }
         catch (Exception $e) {
 
-            $this->errorControlller->errorServer();
+            $this->errorController->errorServer();
         }
     }
 

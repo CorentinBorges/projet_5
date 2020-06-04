@@ -13,6 +13,7 @@ class User
     private $firstName;
     private $valid;
     private $pseudo;
+    private $roleId;
 
     public function getPseudo()
     {
@@ -23,7 +24,7 @@ class User
     {
         $this->pseudo = $pseudo;
     }
-    private $roleId;
+
 
     public function getId()
     {

@@ -8,7 +8,7 @@ class Comment
 {
     private $id;
     private $author;
-    private $post_id;
+    private $postId;
     private $content;
     private $date;
     private $valid;
@@ -35,12 +35,12 @@ class Comment
 
     public function getPostId()
     {
-        return $this->post_id;
+        return $this->postId;
     }
 
-    public function setPostId($post_id)
+    public function setPostId($postId)
     {
-        $this->post_id = $post_id;
+        $this->postId = $postId;
     }
 
     public function getContent()

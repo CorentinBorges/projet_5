@@ -22,7 +22,7 @@ class Constraint
         return null;
     }
 
-    public function minLenght($value,$min,$name=null)
+    public function minLength($value, $min, $name=null)
     {
         if (strlen($value) < $min) {
             return "Le champs " .$name. " doit contenir au moins " .$min." caractères";

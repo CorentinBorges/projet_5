@@ -111,8 +111,8 @@ class UserValidation extends Validation
         $fieldName = 'Mot de passe';
         $constraint = $this->constraint;
 
-        if ($constraint->minLenght($value, 8)) {
-            $this->addError($this->constraint->minLenght($value, 8,$fieldName));
+        if ($constraint->minLength($value, 8)) {
+            $this->addError($this->constraint->minLength($value, 8,$fieldName));
             $this->addErrorField('invalidPass');
         }
         if ($constraint->maxLength($value, 20)) {

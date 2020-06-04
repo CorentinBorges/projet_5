@@ -13,5 +13,4 @@ class Mail
     const ADMIN_NAME = 'Admin';
     const PORT=587;
     const EMAIL_ENCRYPTION = 'tls';
-
 }
