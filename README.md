@@ -1,5 +1,7 @@
 # Le Blog : Projet 5
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9396381189da418d9e584fc9f98876d8)](https://app.codacy.com/manual/CorentinBorges/projet_5?utm_source=github.com&utm_medium=referral&utm_content=CorentinBorges/projet_5&utm_campaign=Badge_Grade_Dashboard)
+
 This is my professional blog
 
 ## Installing project
