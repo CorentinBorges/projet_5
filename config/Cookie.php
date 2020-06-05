@@ -14,8 +14,7 @@ class Cookie
     public function get($name)
     {
         if (isset($_COOKIE[$name])) {
-            $cookie = stripslashes($_COOKIE[$name]);
-            return filter_var($cookie);
+            return filter_var($_COOKIE[$name]);
         }
         return null;
     }
