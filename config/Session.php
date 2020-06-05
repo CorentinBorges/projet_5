@@ -16,8 +16,7 @@ class Session
     public function get($data)
     {
         if (isset($_SESSION[$data])) {
-
-            return $_SESSION[$data];
+            return ;
         }
         return null;
     }
