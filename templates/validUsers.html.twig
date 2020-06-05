@@ -1,0 +1,71 @@
+{% extends 'adminLayout.html.twig' %}
+{% block content %}
+    <div class="col-12 mt-3 text-center pl-md-5 pl-sm-2 col-sm-6 mx-auto">
+        <h2>Utilisateurs validés</h2>
+        <a href="../public/index.php?route=users" class="text-primary">Voir les utilisateurs non validés</a>
+    </div>
+
+    <div class="container mt-5">
+        <form class=" mx-auto col-lg-8" method="post" action="../public/index.php?route=validUsers">
+            {% for user in users %}
+                <div class="form-group container checkComBox row">
+                    <input class='checkValid' type="checkbox" id="box-{{ user.id }}" name="com-{{ user.id }}" value="{{ user.id }}"/>
+                    <label for="box-{{ user.id }}" class="ml-2 col-8">
+                        <u class="user-list">
+                            <li><span class="font-weight-bold" >Nom : </span>{{ user.name}}</li>
+                            <li><span class="font-weight-bold" >Prénom : </span>{{ user.firstName }}</li>
+                            <li><span class="font-weight-bold" >Pseudo : </span>{{ user.pseudo }}</li>
+                            <li><span class="font-weight-bold" >Mail : </span>{{ user.mail }}</li>
+                        </u>
+                    </label>
+                </div>
+            {% endfor %}
+
+            <div class="form-group">
+                <input type="checkbox" id="all"  value="all"/>
+                <label for="all">Tout sélectionner</label>
+            </div>
+            <div class="form-group text-center">
+                <button type="button" data-toggle="modal" data-target="#delModal" class="btn btn-danger">Supprimer la sélection</button>
+            </div>
+
+            <div class="modal fade" tabindex="-1" id="delModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Article: {{ post.title }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Êtes vous sûre de vouloir supprimer ces commentaires?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"  class="btn btn-success" data-dismiss="modal">Non</button>
+                            <button value="delete" name="delUsers" type="submit" class=" btn btn-danger del-btn">Oui</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    {% if session.get('userDel') %}
+        <div class="modal box-comment-bg fade show pt-5  " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false" style="">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content confirm-comment">
+
+                    <button type="button" class="close text-right mr-3" id='confirm-cross-btn' data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class='confirm-cross w-100'>&times;</span>
+                    </button>
+
+                    <div class="modal-body text-center">
+                        <p>{{ session.show('userDel') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

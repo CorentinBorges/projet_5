@@ -1,13 +1,12 @@
 <?php
 
 namespace App\src\DAO;
-
+use \PDO;
+use \Exception;
 
 abstract class DAO
 {
     private $connection;
-
-
 
     private function checkConnexion()
     {
@@ -20,8 +19,8 @@ abstract class DAO
     private function getConnection()
     {
         try {
-            $this->connection = new \PDO(DB_HOST, DB_USER, DB_PASS);
-            $this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            $this->connection = new PDO(DB_HOST, DB_USER, DB_PASS);
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $this->connection;
         }
         catch (Exception $errorConnection) {
@@ -37,12 +36,7 @@ abstract class DAO
             $result->execute($parameters);
             return $result;
         }
-        $query= $this->checkConnexion()->query($req);
-        return $query;
+        return $this->checkConnexion()->query($req);
     }
-
-
-
-
 
 }

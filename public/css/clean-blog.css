@@ -1,9 +1,6 @@
-/*!
- * Start Bootstrap - Clean Blog v5.0.8 (https://startbootstrap.com/template-overviews/clean-blog)
- * Copyright 2013-2019 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-clean-blog/blob/master/LICENSE)
- */
 
+
+/*==============WEBSITE==========*/
 body {
   font-size: 20px;
   color: #212529;
@@ -484,8 +481,12 @@ footer .copyright {
   margin-bottom: 20%;
 }
 
+/*========General==========*/
+#top-btn
+{
+  color: white;
+}
 /*==============Home====================*/
-
 
   .CV-link
   {
@@ -500,7 +501,6 @@ footer .copyright {
 
   #homePic
   {
-
     background-image: url("../../public/pictures/Home.jpg");
   }
 
@@ -515,13 +515,31 @@ footer .copyright {
 /*==========AllPosts=========*/
 
 
+#postPic
+{
+  background-image: url("../../public/pictures/news.jpg");
+  padding-bottom: 400px;
+}
+
 #postsPic
 {
   background-image: url("../../public/pictures/news.jpg");
 }
 
+@media all and (min-width: 576px )
+{
+  #postPic
+  {
+    padding-bottom: 0px;
+  }
+}
+
 /*==========CV===========*/
 
+#CV-head
+{
+  background-image: url("../../public/pictures/CV.jpg");
+}
 #CV
 {
   height: 30rem;
@@ -558,6 +576,10 @@ footer .copyright {
   background: rgba(0,0,0,0.2);
 }
 
+.CGU-container
+{
+  display: none;
+}
 
 .CGU-btn
 {
@@ -565,6 +587,8 @@ footer .copyright {
   border: none;
   font-style: italic;
 }
+
+
 
 .CGU-btn:hover
 {
@@ -581,12 +605,17 @@ footer .copyright {
 .confirm-comment
 {
   background-color: #d4edda;
-  
 }
 
-.confirm-comment-bg
+.error-comment
+{
+  background-color: #F8D7DA;
+}
+.box-comment-bg
 {
   background-color: rgba(0,0,0,0.2);
+  display: block;
+  padding-right: 19px;
 }
 
 
@@ -643,4 +672,31 @@ footer .copyright {
 #title , #chapo
 {
   resize: none;
+}
+
+/*=========Comments==========*/
+
+#validCom
+{
+  text-decoration: none;
+  color: limegreen;
+}
+
+#validCom:hover
+{
+  text-decoration: underline;
+}
+
+.checkComBox
+{
+  border: black 1px solid;
+
+}
+
+/*======Users=======*/
+
+.user-list
+{
+  text-decoration: none;
+  list-style: none;
 }

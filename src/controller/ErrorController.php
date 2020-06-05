@@ -8,11 +8,16 @@ class ErrorController extends MainController
 {
     public function errorNotFound()
     {
-        $this->view->render('errorNotFound.html.twig');
+        $this->getTwig('errorNotFound.html.twig');
     }
 
     public function errorServer()
     {
-        $this->view->render('errorServer.html.twig');
+        $this->getTwig('errorServer.html.twig');
+    }
+
+    public function errorNotAdmin()
+    {
+        $this->getTwig('notAdmin.html.twig');
     }
 }

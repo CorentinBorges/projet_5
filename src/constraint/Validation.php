@@ -3,10 +3,12 @@
 
 namespace App\src\constraint;
 
+use App\config\Parameter;
+
 class Validation
 {
     protected $errors;
-    protected $errorType;
+    protected $errorField;
     protected $constraint;
 
     public function __construct()
@@ -20,9 +22,9 @@ class Validation
         $this->errors[]=$error;
     }
 
-    protected function addErrorType($type)
+    protected function addErrorField($type)
     {
-        $this->errorType[]=$type;
+        $this->errorField[]=$type;
     }
 
     public function Validate($data,$name)
@@ -32,24 +34,50 @@ class Validation
             $errors = $userValidation ->check($data);
             return $errors;
         }
-    }
 
-    public function errorType()
-    {
-        if($this->errorType)
-        {
-            return $this->errorType;
+        if($name === 'comment'){
+            $commentValidation = new CommentValidation();
+            $errors=$commentValidation->check($data);
+            return $errors;
         }
+
+        if ($name === 'mail') {
+            $mailValidation = new MailValidation();
+            $errors = $mailValidation->check($data);
+            return $errors;
+        }
+
+        if ($name === 'article') {
+            $postValidation = new ArticleValidation();
+            $errors = $postValidation->check($data);
+            return $errors;
+        }
+
+        return null;
     }
 
-    public function getErrorType($datas,$name)
+    public function errorField()
+    {
+        if($this->errorField)
+        {
+            return $this->errorField;
+        }
+        return null;
+    }
+
+    public function getErrorField(Parameter $datas,$name)
     {
         if ($name==='user') {
             $userValidation = new UserValidation();
             $userValidation->check($datas);
-
-
-            return $userValidation->errorType();
+            return $userValidation->errorField();
         }
+
+        if ($name === 'mail') {
+            $mailValidation = new MailValidation();
+            $mailValidation->check($datas);
+            return $mailValidation->errorField;
+        }
+        return null;
     }
 }

@@ -42,12 +42,29 @@
 
 
 $("body").click(function(event) {
-    $('.confirm-comment-bg').hide()
+    $('.box-comment-bg').hide()
 });
 
+
+
+
+/*==========General=========*/
+$('.CGU').click(function(event) {
+    $('.CGU').hide();
+});
+
+$('.CGU-btn').click(function(event) {
+    $('.CGU').removeClass("CGU-container");
+    $('.CGU').show();
+});
+
+$('#top-btn').click(function () {
+
+        $(document).scrollTop( $("#top").offset().top-100 );
+})
+
+/*=========Forms=========*/
 x=0;
-
-
 while( x<6){
 
     $("."+x+".text-danger").click(function() {
@@ -56,16 +73,16 @@ while( x<6){
     x++;
 }
 
-$('.CGU').click(function(event) {
-    $('.CGU').hide();
+/*======admin Forms======*/
+var attr = $(this).attr('checked','checked');
+
+
+
+$('#all').click(function () {
+    if ($('#all').prop( "checked" )) {
+        $('.checkValid').prop("checked",true);
+    }
+    else {
+        $('.checkValid').prop('checked',false);
+    }
 });
-
-$('.CGU-btn').click(function(event) {
-    $('.CGU').show();  
-});
-
-$('#top-btn').click(function () {
-
-        $(document).scrollTop( $("#top").offset().top-100 );
-})
-

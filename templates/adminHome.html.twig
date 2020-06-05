@@ -1,0 +1,9 @@
+{% extends 'adminLayout.html.twig' %}
+{% block content%}
+    <div class="col-12 mt-3 text-center pl-md-5 pl-sm-2 col-sm-8 mx-auto">
+        <h2>Configuration du blog</h2>
+        <p>Nombre de commentaires non validés: {{countCom}}</p>
+        <p>Nombre d'utilisateurs non validés: {{countLog}}</p>
+    </div>
+
+{% endblock %}
