@@ -15,7 +15,7 @@ class Session
 
     public function get($data)
     {
-        if (isset($_SESSION[$data])) {
+        if (isset($_SESSION[$data])) {  
             return filter_var($_SESSION[$data]);
         }
         return null;
@@ -23,7 +23,7 @@ class Session
 
     public function set($data,$value)
     {
-        $_SESSION[$data] = filter_var($value);
+        $_SESSION[$data] = $value;
     }
 
     public function show($key)
