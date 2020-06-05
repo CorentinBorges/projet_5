@@ -26,15 +26,16 @@ a {
   transition: all 0.2s;
 }
 
+p a {
+  text-decoration: underline;
+}
+
 a:focus,
 a:hover {
   color: #0085a1;
 }
 
 
-p a {
-  text-decoration: underline;
-}
 
 blockquote {
   font-style: italic;

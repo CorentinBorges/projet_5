@@ -18,15 +18,10 @@ abstract class DAO
 
     private function getConnection()
     {
-        try {
+
             $this->connection = new PDO(DB_HOST, DB_USER, DB_PASS);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $this->connection;
-        }
-        catch (Exception $errorConnection) {
-
-            die("Erreur de connexion:" . $errorConnection->getMessage());
-        }
     }
 
     protected function createQuery($req,$parameters=null)
