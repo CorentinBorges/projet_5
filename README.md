@@ -10,7 +10,7 @@ This is my professional blog
 
 3.  Once ```composer``` is installed. Open your terminal, go to ```yourLocalhostDirectory/Projet_5``` and type ````composer install````. This command will install all composer's dependencies
 
-4.  Import the blog.db file in your database
+4.  Import the [blog.sql](blog.sql) file in your database
 
 5.  Configure the database infos in [this file](config/dev.php)
 

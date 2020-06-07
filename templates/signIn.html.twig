@@ -4,7 +4,7 @@
     {% if session.get('errors') %}
         <div class="alert alert-danger alert-dismissible fade show container col-10 col-lg-5 text-left" role="alert">
 
-            {% for error in session.get('errors') %}
+            {% for error in session.show('errors') %}
                 <ul>
                     <li> {{ error }} </li>
                 </ul>

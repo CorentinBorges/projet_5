@@ -109,7 +109,6 @@ class FrontController extends MainController
             }
 
             if (isset($errorTypes)) {
-
                 foreach ($errorTypes as $value) {
                     $this->session->set($value,'text-danger');
                 }
