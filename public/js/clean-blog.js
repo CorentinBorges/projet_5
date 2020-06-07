@@ -15,8 +15,8 @@
 
   //primary navigation slide-in effect
   if ($(window).width() > MQL) {
-    var headerHeight = $('#mainNav').height();
-    $(window).on('scroll', {
+    var headerHeight = $("#mainNav").height();
+    $(window).on("scroll", {
         previousTop: 0
       },
       function() {
@@ -24,15 +24,15 @@
         //check if user is scrolling up
         if (currentTop < this.previousTop) {
           //if scrolling up...
-          if (currentTop > 0 && $('#mainNav').hasClass('is-fixed')) {
-            $('#mainNav').addClass('is-visible');
+          if (currentTop > 0 && $("#mainNav").hasClass("is-fixed")) {
+            $("#mainNav").addClass("is-visible");
           } else {
-            $('#mainNav').removeClass('is-visible is-fixed');
+            $("#mainNav").removeClass("is-visible is-fixed");
           }
         } else if (currentTop > this.previousTop) {
           //if scrolling down...
-          $('#mainNav').removeClass('is-visible');
-          if (currentTop > headerHeight && !$('#mainNav').hasClass('is-fixed')) $('#mainNav').addClass('is-fixed');
+          $("#mainNav").removeClass("is-visible");
+          if (currentTop > headerHeight && !$("#mainNav").hasClass("is-fixed")) $("#mainNav").addClass("is-fixed");
         }
         this.previousTop = currentTop;
       });
@@ -49,40 +49,36 @@ $("body").click(function(event) {
 
 
 /*==========General=========*/
-$('.CGU').click(function(event) {
-    $('.CGU').hide();
+$(".CGU").click(function(event) {
+    $(".CGU").hide();
 });
 
-$('.CGU-btn').click(function(event) {
-    $('.CGU').removeClass("CGU-container");
-    $('.CGU').show();
+$(".CGU-btn").click(function(event) {
+    $(".CGU").removeClass("CGU-container");
+    $(".CGU").show();
 });
 
-$('#top-btn').click(function () {
-
-        $(document).scrollTop( $("#top").offset().top-100 );
-})
+$("#top-btn").click(function () {
+    $(document).scrollTop( $("#top").offset().top-100 );
+});
 
 /*=========Forms=========*/
-x=0;
+let x = 0;
 while( x<6){
 
     $("."+x+".text-danger").click(function() {
-        $(this).removeClass('text-danger');
+        $(this).removeClass("text-danger");
     });
     x++;
 }
 
 /*======admin Forms======*/
-var attr = $(this).attr('checked','checked');
-
-
 
 $('#all').click(function () {
-    if ($('#all').prop( "checked" )) {
+    if ($('#all').prop( "checked")) {
         $('.checkValid').prop("checked",true);
     }
     else {
-        $('.checkValid').prop('checked',false);
+        $('.checkValid').prop("checked",false);
     }
 });

@@ -13,8 +13,8 @@ class Cookie
 
     public function get($name)
     {
-        if (filter_input(INPUT_COOKIE,$name)) {
-            return filter_input(INPUT_COOKIE,$name);
+        if (isset($_COOKIE[$name])) {
+            return filter_var($_COOKIE[$name]);
         }
         return null;
     }

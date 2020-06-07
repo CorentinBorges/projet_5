@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %}
 {% block jumbotron %}
-    <header class="masthead" id="homePic" alt='Ordinateur avec code'>
+    <header class="masthead" id="homePic">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -81,8 +81,8 @@
                 <form name="sentMessage" id="contactForm" method='post' action="../public/">
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
-                            <label>Nom</label>
-                            <input type="text"
+                            <label for="name">Nom</label>
+                            <input type="text" id="name"
                                 {% if session.get('name') %}
                                     value='{{ session.show('name') }}'
                                     {% if session.get('invalidName') %}
@@ -97,8 +97,8 @@
                     </div>
                     <div class="control-group ">
                         <div class="form-group floating-label-form-group controls">
-                            <label>Prénom</label>
-                            <input type="text" name='firstName'
+                            <label for="firstName">Prénom</label>
+                            <input type="text" name='firstName' id="firstName"
                                     {% if session.get('firstName') %}
                                         value='{{ session.show('firstName') }}'
                                         {% if session.get('invalidFirstName') %}
@@ -113,8 +113,8 @@
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
-                            <label>objet</label>
-                            <input type="text" name="obj"
+                            <label for="obj">objet</label>
+                            <input type="text" name="obj" id="obj"
                                     {% if session.get('obj') %}
                                         value='{{ session.show('obj') }}'
                                         {% if session.get('invalidObj') %}
@@ -129,8 +129,8 @@
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
-                            <label>Mail</label>
-                            <input type="email"
+                            <label for="mail">Mail</label>
+                            <input type="email" id="mail"
                                     {% if session.get('mail') %}
                                         value='{{ session.show('mail') }}'
                                         {% if session.get('invalidMail') %}
@@ -145,8 +145,8 @@
                     </div>
                     <div class="control-group ">
                         <div class="form-group floating-label-form-group controls">
-                            <label>Message</label>
-                            <textarea rows="4"  maxlength="250" name='message'  placeholder="Message" id="message"
+                            <label for="content">Message</label>
+                            <textarea rows="4" id="content" maxlength="250" name='message'  placeholder="Message" id="message"
                                 {% if session.get('invalidMessage') %}
                                     class="form-control 5 {{ session.show('invalidMessage') }}"
                                 {% else %}
