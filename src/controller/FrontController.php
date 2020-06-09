@@ -25,15 +25,15 @@ class FrontController extends MainController
                 $this->session->set('message',$post->get('message'));
             }
             else{
-                $transport = (new \Swift_SmtpTransport(mail::HOST_NAME, MAIL::PORT))
-                    ->setUsername(mail::USERNAME)
-                    ->setPassword(mail::PASSWORD)
-                    ->setEncryption(mail::EMAIL_ENCRYPTION)
+                $transport = (new \Swift_SmtpTransport(MAIL_HOST_NAME, MAIL_PORT))
+                    ->setUsername(MAIL_USERNAME)
+                    ->setPassword(MAIL_PASSWORD)
+                    ->setEncryption(EMAIL_ENCRYPTION)
                 ;
                 $mailer = new \Swift_Mailer($transport);
                 $message=(new \Swift_Message($post->get('obj')))
                     ->setFrom([$post->get('mail') => $post->get('firstName')." ".$post->get('name')])
-                    ->setTo([mail::ADMIN_MAIL => mail::ADMIN_NAME])
+                    ->setTo([MAIL_ADMIN => MAIL_ADMIN_NAME])
                     ->setBody($post->get('message'),'text/html');
                 $mailer->send($message);
                 $this->session->set('confirm','Votre mail à bien été envoyé');

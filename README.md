@@ -6,19 +6,50 @@ This is my professional blog
 
 ## Installing project
 
-1.  Clone or Download project
+1.  Download:
+    ```bash
+    $ git clone https://github.com/CorentinBorges/projet_5
+    ```
 
-2.  Put the folder 'project_5' to the root of your localhost
+2. Move to the project
+    ```bash
+    $ cd projet_5
+    ``` 
 
-3.  Once ```composer``` is installed. Open your terminal, go to ```yourLocalhostDirectory/Projet_5``` and type ````composer install````. This command will install all composer's dependencies
+3.  Install:
+    ```
+    $ composer install
+    ```
 
-4.  Import the [blog.sql](blog.sql) file in your database
+4.  Create a database with your favorite tool and name it 'blog'
 
-5.  Configure the database infos in [this file](config/dev.php)
+5.  Create a 'dev.php' file in 'config'
+    ```php
+    <?php
+    
+    //Database
+    const DB_SERVER_HOST = 'localhost';
+    const DB_NAME = 'blog';
+    const DB_CHARSET = 'utf8';
+    const DB_HOST = 'mysql:host='.DB_SERVER_HOST.';dbname='.DB_NAME.';charset='.DB_CHARSET;
+    const DB_USER = "username";
+    const DB_PASS = "password";
+    
+    //Mail
+    const MAIL_HOST_NAME='hostname';
+    const MAIL_USERNAME = 'username';
+    const MAIL_PASSWORD = 'password';
+    const MAIL_ADMIN = 'adminmail@gmail.com';
+    const MAIL_ADMIN_NAME = 'Admin';
+    const MAIL_PORT='port number';
+    const EMAIL_ENCRYPTION = 'tls';
+    ```
 
-6.  Configure the mail infos [here](config/Mail.php) (I recommend to use [MailTrap](https://mailtrap.io/) to test sending mails locally)
-
-7.  Write 'localhost/projet_5/public' in the address bar of your favorite browser and press enter
+6.  Launch your web server with:
+    ```bash
+    $ php -S localhost -t public/
+    ```
+7.  Create an admin user and give it the appropriate role in your database
 
 ## Built With
 *   [Composer 1.10.5](https://getcomposer.org/)
