@@ -42,7 +42,7 @@ abstract class MainController
     protected function getTwig($page,$vars=[])
     {
         $loader = new FilesystemLoader(__DIR__.'/../../templates');
-        $this->twig = new Environment($loader, array('cache' => __DIR__.'/../../public/cache'));
+        $this->twig = new Environment($loader, array('cache' => false));//TODO: create a cache for prod
         $this->twig->addGlobal('session',$this->session);
         print_r($this->twig->render($page,$vars));
     }
