@@ -49,7 +49,7 @@ This is my professional blog
     ```bash
     $ php -S localhost -t public/
     ```
-7.  Create an admin user and give it the appropriate role in your database
+7.  Create an admin user, give it the appropriate role, and the appropriate valid (1) in your database.
 
 ## Built With
 *   [Composer 1.10.5](https://getcomposer.org/)
