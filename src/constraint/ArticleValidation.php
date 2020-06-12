@@ -2,6 +2,7 @@
 
 
 namespace App\src\constraint;
+
 use App\config\Parameter;
 
 class ArticleValidation extends Validation
